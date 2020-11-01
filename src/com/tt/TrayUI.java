@@ -1,23 +1,15 @@
 package com.tt;
 
-import java.awt.Image;
-import java.awt.MenuItem;
-import java.awt.PopupMenu;
-import java.awt.SystemTray;
-import java.awt.Toolkit;
-import java.awt.TrayIcon;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-import javax.swing.JOptionPane;
 
 public class TrayUI {
   public static void main(String[] args)throws Exception {
     if (!SystemTray.isSupported()) {
       System.out.println("SystemTray is not supported");
-      return;
+      System.exit(0);
     }
 
     SystemTray tray = SystemTray.getSystemTray();
@@ -39,9 +31,44 @@ public class TrayUI {
     MouseAdapter mouseAdapter = new MouseAdapter() {
       public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1) {
-          icon.displayMessage("TrayIcon Demo",
-                  "This is an info message from TrayIcon demo",
-                  TrayIcon.MessageType.INFO);
+//          icon.displayMessage("TrayIcon Demo",
+//                  "This is an info message from TrayIcon demo",
+//                  TrayIcon.MessageType.INFO);
+          JWindow jWindow = new JWindow();
+          JPanel p = new JPanel();
+          JLabel l = new JLabel("this is a window");
+          p.setBorder(BorderFactory.createLineBorder(Color.black));
+          p.add(l);
+          jWindow.add(p);
+          //p.setBackground(Color.red);
+          jWindow.setSize(200, 100);
+
+          Rectangle bounds = TestTaskIcon.getSafeScreenBounds(e.getPoint());
+          Point point = e.getPoint();
+
+          int x = point.x;
+          int y = point.y;
+          if (y < bounds.y) {
+            y = bounds.y;
+          } else if (y > bounds.y + bounds.height) {
+            y = bounds.y + bounds.height;
+          }
+          if (x < bounds.x) {
+            x = bounds.x;
+          } else if (x > bounds.x + bounds.width) {
+            x = bounds.x + bounds.width;
+          }
+
+          if (x + jWindow.getPreferredSize().width > bounds.x + bounds.width) {
+            x = (bounds.x + bounds.width) - jWindow.getPreferredSize().width;
+          }
+          if (y + jWindow.getPreferredSize().height > bounds.y + bounds.height) {
+            y = (bounds.y + bounds.height) - jWindow.getPreferredSize().height;
+          }
+          jWindow.setLocation(x, y);
+          jWindow.setVisible(true);
+
+
         }
       }
     };
