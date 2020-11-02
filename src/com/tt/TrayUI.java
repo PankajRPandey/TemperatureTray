@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.geom.Area;
 
 public class TrayUI {
   public static void main(String[] args)throws Exception {
@@ -73,9 +72,15 @@ public class TrayUI {
                   .getMaximumWindowBounds();
           String os = System.getProperty("os.name");
           if (os.contains("Windows")) {
+
             jWindow.setLocation(/*screen.width - 200 - 6*/point1.x, screen.height - 100 - 6);
+            System.out.println(point1.x + " " + (screen.height - 100 - 6));
           } else if (os.contains("Mac")) {
-            //jWindow.setLocation(screen.width - windowSize.width + 6, 6);
+            //this solution works with windows top taskbar
+            //add logic to check taskbar location
+            Dimension scrnSize = Toolkit.getDefaultToolkit().getScreenSize();
+            jWindow.setLocation(point1.x,scrnSize.height - screen.height /*screen.width - 200 + 6, 6*/);
+            System.out.println(point1.x + " " + (scrnSize.height - screen.height));
           }
           jWindow.setVisible(true);
 
