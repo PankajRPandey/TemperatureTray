@@ -6,42 +6,42 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class TrayUI {
-  public static void main(String[] args)throws Exception {
-    if (!SystemTray.isSupported()) {
-      System.out.println("SystemTray is not supported");
-      System.exit(0);
-    }
+    public static void main(String[] args) throws Exception {
+        if (!SystemTray.isSupported()) {
+            System.out.println("SystemTray is not supported");
+            System.exit(0);
+        }
 
-    SystemTray tray = SystemTray.getSystemTray();
-    Toolkit toolkit = Toolkit.getDefaultToolkit();
-    Image image = toolkit.getImage("src/resources/tt.png");
+        SystemTray tray = SystemTray.getSystemTray();
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Image image = toolkit.getImage("src/resources/tt.png");
 
-    PopupMenu menu = new PopupMenu();
+        PopupMenu menu = new PopupMenu();
 
-    MenuItem messageItem = new MenuItem("Show Message");
-    messageItem.addActionListener(e -> JOptionPane.showMessageDialog(null, "www.java2s.com"));
-    menu.add(messageItem);
+        MenuItem messageItem = new MenuItem("Show Message");
+        messageItem.addActionListener(e -> JOptionPane.showMessageDialog(null, "Temperature Tray is in making!"));
+        menu.add(messageItem);
 
-    MenuItem closeItem = new MenuItem("Close");
-    closeItem.addActionListener(e -> System.exit(0));
-    menu.add(closeItem);
+        MenuItem closeItem = new MenuItem("Close");
+        closeItem.addActionListener(e -> System.exit(0));
+        menu.add(closeItem);
 
-    TrayIcon icon = new TrayIcon(image, "Temperature Tray", menu);
+        TrayIcon icon = new TrayIcon(image, "Temperature Tray", menu);
 
-    MouseAdapter mouseAdapter = new MouseAdapter() {
-      public void mouseClicked(MouseEvent e) {
-        if (e.getButton() == MouseEvent.BUTTON1) {
+        MouseAdapter mouseAdapter = new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                if (e.getButton() == MouseEvent.BUTTON1) {
 //          icon.displayMessage("TrayIcon Demo",
 //                  "This is an info message from TrayIcon demo",
 //                  TrayIcon.MessageType.INFO);
-          JWindow jWindow = new JWindow();
-          JPanel p = new JPanel();
-          JLabel l = new JLabel("this is a window");
-          p.setBorder(BorderFactory.createLineBorder(Color.black));
-          p.add(l);
-          jWindow.add(p);
-          //p.setBackground(Color.red);
-          jWindow.setSize(200, 100);
+                    JWindow jWindow = new JWindow();
+                    JPanel p = new JPanel();
+                    JLabel l = new JLabel("this is a window");
+                    p.setBorder(BorderFactory.createLineBorder(Color.black));
+                    p.add(l);
+                    jWindow.add(p);
+                    //p.setBackground(Color.red);
+                    jWindow.setSize(200, 100);
 
 //          Rectangle bounds = TestTaskIcon.getSafeScreenBounds(e.getPoint());
 //          Point point = e.getPoint();
@@ -66,51 +66,36 @@ public class TrayUI {
 //            y = (bounds.y + bounds.height) - jWindow.getPreferredSize().height;
 //          }
 //          jWindow.setLocation(x, y);
-          Point point1 = e.getPoint();
-          System.out.println(point1);
-          Rectangle screen = GraphicsEnvironment.getLocalGraphicsEnvironment()
-                  .getMaximumWindowBounds();
-          String os = System.getProperty("os.name");
-          if (os.contains("Windows")) {
+                    Point point1 = e.getPoint(); //system tray icon click x,y/co-ords
+                    //System.out.println(point1);
+                    Rectangle windowSize = GraphicsEnvironment.getLocalGraphicsEnvironment()
+                            .getMaximumWindowBounds();
+                    String os = System.getProperty("os.name");
+                    if (os.contains("Windows")) {
+                        if (point1.y <= 100) {
+                            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                            //
+                            jWindow.setLocation(point1.x, screenSize.height - windowSize.height /*windowSize.width - 200 + 6, 6*/);
+                            //System.out.println(point1.x + " " + (screenSize.height - windowSize.height));
+                        } else {
+                            jWindow.setLocation(/*windowSize.width - 200 - 6*/point1.x, windowSize.height - 100);
+                            //System.out.println(point1.x + " " + (windowSize.height - 100 - 6));
+                        }
+                    } else if (os.contains("Mac")) {
+                        //this solution works with windows top taskbar
+                        //add logic to check taskbar location
+                        //test this on Mac
+                        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                        jWindow.setLocation(point1.x, screenSize.height - windowSize.height /*windowSize.width - 200 + 6, 6*/);
+                        System.out.println(point1.x + " " + (screenSize.height - windowSize.height));
+                    }
+                    jWindow.setVisible(true);
+                }
+            }
+        };
 
-            jWindow.setLocation(/*screen.width - 200 - 6*/point1.x, screen.height - 100 - 6);
-            System.out.println(point1.x + " " + (screen.height - 100 - 6));
-          } else if (os.contains("Mac")) {
-            //this solution works with windows top taskbar
-            //add logic to check taskbar location
-            Dimension scrnSize = Toolkit.getDefaultToolkit().getScreenSize();
-            jWindow.setLocation(point1.x,scrnSize.height - screen.height /*screen.width - 200 + 6, 6*/);
-            System.out.println(point1.x + " " + (scrnSize.height - screen.height));
-          }
-          jWindow.setVisible(true);
-
-          //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-//          GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-//          Rectangle bounds1 = gd.getDefaultConfiguration().getBounds();
-//          Insets insets = Toolkit.getDefaultToolkit().getScreenInsets(gd.getDefaultConfiguration());
-//
-//          Rectangle safeBounds = new Rectangle(bounds1);
-//          safeBounds.x += insets.left;
-//          safeBounds.y += insets.top;
-//          safeBounds.width -= (insets.left + insets.right);
-//          safeBounds.height -= (insets.top + insets.bottom);
-//
-//          System.out.println("Bounds = " + bounds1);
-//          System.out.println("SafeBounds = " + safeBounds);
-//
-//          Area area = new Area(bounds1);
-//          area.subtract(new Area(safeBounds));
-//          System.out.println("Area = " + area.getBounds());
-          //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-        }
-      }
-    };
-
-    icon.addMouseListener(mouseAdapter);
-
-    icon.setImageAutoSize(true);
-
-    tray.add(icon);
-  }
+        icon.addMouseListener(mouseAdapter);
+        icon.setImageAutoSize(true);
+        tray.add(icon);
+    }
 }
