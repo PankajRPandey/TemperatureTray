@@ -29,12 +29,15 @@ public class TrayUI {
         TrayIcon icon = new TrayIcon(image, "Temperature Tray", menu);
 
         MouseAdapter mouseAdapter = new MouseAdapter() {
+            JWindow jWindow = null;
             public void mouseClicked(MouseEvent e) {
                 if (e.getButton() == MouseEvent.BUTTON1) {
 //          icon.displayMessage("TrayIcon Demo",
 //                  "This is an info message from TrayIcon demo",
 //                  TrayIcon.MessageType.INFO);
-                    JWindow jWindow = new JWindow();
+                    if (jWindow == null){
+                        jWindow = new JWindow();
+                    }
                     JPanel p = new JPanel();
                     JLabel l = new JLabel("this is a window");
                     p.setBorder(BorderFactory.createLineBorder(Color.black));
