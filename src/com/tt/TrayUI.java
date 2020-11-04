@@ -75,10 +75,10 @@ public class TrayUI {
                         if (point1.y <= 100) {
                             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
                             //
-                            jWindow.setLocation(point1.x, screenSize.height - windowSize.height /*windowSize.width - 200 + 6, 6*/);
+                            jWindow.setLocation(point1.x, (screenSize.height - windowSize.height) - 6 /*windowSize.width - 200 + 6, 6*/);
                             //System.out.println(point1.x + " " + (screenSize.height - windowSize.height));
                         } else {
-                            jWindow.setLocation(/*windowSize.width - 200 - 6*/point1.x, windowSize.height - 100);
+                            jWindow.setLocation(/*windowSize.width - 200 - 6*/point1.x, windowSize.height - 100 - 6);
                             //System.out.println(point1.x + " " + (windowSize.height - 100 - 6));
                         }
                     } else if (os.contains("Mac")) {
