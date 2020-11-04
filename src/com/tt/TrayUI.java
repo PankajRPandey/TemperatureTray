@@ -89,6 +89,7 @@ public class TrayUI {
                         jWindow.setLocation(point1.x, screenSize.height - windowSize.height /*windowSize.width - 200 + 6, 6*/);
                         System.out.println(point1.x + " " + (screenSize.height - windowSize.height));
                     }
+                    jWindow.setAlwaysOnTop(true);
                     jWindow.setVisible(true);
                 }
             }
