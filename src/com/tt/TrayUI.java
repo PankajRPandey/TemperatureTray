@@ -75,7 +75,7 @@ public class TrayUI {
                             .getMaximumWindowBounds();
                     String os = System.getProperty("os.name");
                     if (os.contains("Windows")) {
-                        if (point1.y <= 100) {
+                        if (point1.y <= 300) {
                             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
                             //
                             jWindow.setLocation(point1.x, (screenSize.height - windowSize.height) - 6 /*windowSize.width - 200 + 6, 6*/);
