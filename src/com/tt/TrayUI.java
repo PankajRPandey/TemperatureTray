@@ -40,35 +40,11 @@ public class TrayUI {
                     }
                     JPanel p = new JPanel();
                     JLabel l = new JLabel("this is a window");
-                    p.setBorder(BorderFactory.createLineBorder(Color.black));
+                    p.setBorder(BorderFactory.createLineBorder(Color.black, 5, true));
                     p.add(l);
                     jWindow.add(p);
-                    //p.setBackground(Color.red);
-                    jWindow.setSize(200, 100);
-
-//          Rectangle bounds = TestTaskIcon.getSafeScreenBounds(e.getPoint());
-//          Point point = e.getPoint();
-//
-//          int x = point.x;
-//          int y = point.y;
-//          if (y < bounds.y) {
-//            y = bounds.y;
-//          } else if (y > bounds.y + bounds.height) {
-//            y = bounds.y + bounds.height;
-//          }
-//          if (x < bounds.x) {
-//            x = bounds.x;
-//          } else if (x > bounds.x + bounds.width) {
-//            x = bounds.x + bounds.width;
-//          }
-//
-//          if (x + jWindow.getPreferredSize().width > bounds.x + bounds.width) {
-//            x = (bounds.x + bounds.width) - jWindow.getPreferredSize().width;
-//          }
-//          if (y + jWindow.getPreferredSize().height > bounds.y + bounds.height) {
-//            y = (bounds.y + bounds.height) - jWindow.getPreferredSize().height;
-//          }
-//          jWindow.setLocation(x, y);
+                    p.setBackground(Color.WHITE);
+                    jWindow.setSize(300, 200);
                     Point point1 = e.getPoint(); //system tray icon click x,y/co-ords
                     //System.out.println(point1);
                     Rectangle windowSize = GraphicsEnvironment.getLocalGraphicsEnvironment()
@@ -81,7 +57,7 @@ public class TrayUI {
                             jWindow.setLocation(point1.x, (screenSize.height - windowSize.height) - 6 /*windowSize.width - 200 + 6, 6*/);
                             //System.out.println(point1.x + " " + (screenSize.height - windowSize.height));
                         } else {
-                            jWindow.setLocation(/*windowSize.width - 200 - 6*/point1.x, windowSize.height - 100 - 6);
+                            jWindow.setLocation(/*windowSize.width - 200 - 6*/point1.x, windowSize.height - 200 - 6);
                             //System.out.println(point1.x + " " + (windowSize.height - 100 - 6));
                         }
                     } else if (os.contains("Mac")) {
