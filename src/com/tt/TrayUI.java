@@ -38,12 +38,12 @@ public class TrayUI {
                     if (jWindow == null){
                         jWindow = new JWindow();
                     }
-                    JPanel p = new JPanel();
+                    JPanel mainPanel = new JPanel();
                     JLabel l = new JLabel("this is a window");
-                    p.setBorder(BorderFactory.createLineBorder(Color.black, 5, true));
-                    p.add(l);
-                    jWindow.add(p);
-                    p.setBackground(Color.WHITE);
+                    mainPanel.setBorder(BorderFactory.createLineBorder(Color.black, 5, true));
+                    mainPanel.add(l);
+                    jWindow.add(mainPanel);
+                    mainPanel.setBackground(Color.WHITE);
                     jWindow.setSize(300, 200);
                     Point point1 = e.getPoint(); //system tray icon click x,y/co-ords
                     //System.out.println(point1);
