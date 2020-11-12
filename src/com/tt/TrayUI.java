@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 
 public class TrayUI {
     public static void main(String[] args) {
-
+        String zipCode = APIUtils.getKeyValue("https://freegeoip.app/json/", "zip_code");
         EventQueue.invokeLater(() -> {
 
             if (!SystemTray.isSupported()) {
@@ -43,7 +43,7 @@ public class TrayUI {
                             jWindow = new JWindow();
                         }
                         JPanel mainPanel = new JPanel();
-                        JLabel l = new JLabel("this is a window");
+                        JLabel l = new JLabel("Zipcode : " + zipCode);
                         mainPanel.setBorder(BorderFactory.createLineBorder(Color.black, 5, true));
                         mainPanel.add(l);
                         jWindow.add(mainPanel);
