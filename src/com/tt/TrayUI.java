@@ -34,7 +34,7 @@ public class TrayUI {
             TrayIcon icon = new TrayIcon(image, "Temperature Tray", menu);
 
             MouseAdapter mouseAdapter = new MouseAdapter() {
-                JWindow jWindow = null;
+                JFrame jWindow = null;
 
                 public void mouseClicked(MouseEvent e) {
                     if (e.getButton() == MouseEvent.BUTTON1) {
@@ -42,7 +42,7 @@ public class TrayUI {
 //                  "This is an info message from TrayIcon demo",
 //                  TrayIcon.MessageType.INFO);
                         if (jWindow == null) {
-                            jWindow = new JWindow();
+                            jWindow = new JFrame();
                         }
                         JPanel mainPanel = new JPanel();
                         JLabel l = new JLabel("Longitude Latitude : " + keyValue);
@@ -74,7 +74,9 @@ public class TrayUI {
                             jWindow.setLocation(point1.x, screenSize.height - windowSize.height /*windowSize.width - 200 + 6, 6*/);
                             System.out.println(point1.x + " " + (screenSize.height - windowSize.height));
                         }
+                        jWindow.setType(Window.Type.UTILITY);
                         jWindow.setAlwaysOnTop(true);
+                        jWindow.setUndecorated(true);
                         jWindow.setVisible(true);
                         jWindow.setFocusable(true);
                         jWindow.addWindowFocusListener(new WindowFocusListener() {
