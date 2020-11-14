@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 
 public class TrayUI {
     public static void main(String[] args) {
-        String zipCode = APIUtils.getKeyValue("https://freegeoip.app/json/", "zip_code");
+        String zipCode = APIUtils.getKeyValue("https://freegeoip.app/json/", "longitude", "latitude");
         EventQueue.invokeLater(() -> {
 
             if (!SystemTray.isSupported()) {

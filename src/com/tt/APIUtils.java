@@ -10,7 +10,7 @@ import java.net.URL;
 public class APIUtils {
     private static JSONObject jsonObject;
 
-    public static String getKeyValue(String apiURL, String responseKey) {
+    public static String getKeyValue(String apiURL, String... responseKey) {
         try {
             URL url = new URL(apiURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -33,9 +33,16 @@ public class APIUtils {
             conn.disconnect();
 
             jsonObject = new JSONObject(response.toString());
+            System.out.println(jsonObject);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return jsonObject.getString(responseKey);
+        String response="";
+        for (String key: responseKey) {
+            response = response + " " + jsonObject.getDouble(key);
+        }
+        return response;
     }
+
+
 }
