@@ -4,10 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
 
 public class TrayUI {
     public static void main(String[] args) {
-        String zipCode = APIUtils.getKeyValue("https://freegeoip.app/json/", "longitude", "latitude");
+        String keyValue = APIUtils.getKeyValue("https://freegeoip.app/json/", "longitude", "latitude");
         EventQueue.invokeLater(() -> {
 
             if (!SystemTray.isSupported()) {
@@ -43,7 +45,7 @@ public class TrayUI {
                             jWindow = new JWindow();
                         }
                         JPanel mainPanel = new JPanel();
-                        JLabel l = new JLabel("Zipcode : " + zipCode);
+                        JLabel l = new JLabel("Longitude Latitude : " + keyValue);
                         mainPanel.setBorder(BorderFactory.createLineBorder(Color.black, 5, true));
                         mainPanel.add(l);
                         jWindow.add(mainPanel);
@@ -74,9 +76,22 @@ public class TrayUI {
                         }
                         jWindow.setAlwaysOnTop(true);
                         jWindow.setVisible(true);
+                        jWindow.setFocusable(true);
+                        jWindow.addWindowFocusListener(new WindowFocusListener() {
+                            @Override
+                            public void windowGainedFocus(WindowEvent e) {
+
+                            }
+
+                            @Override
+                            public void windowLostFocus(WindowEvent e) {
+                                jWindow.dispose();
+                            }
+                        });
                     }
                 }
             };
+
 
             icon.addMouseListener(mouseAdapter);
             icon.setImageAutoSize(true);
