@@ -44,10 +44,15 @@ public class TrayUI {
                         if (jWindow == null) {
                             jWindow = new JFrame();
                         }
-                        JPanel mainPanel = new JPanel();
-                        JLabel l = new JLabel("Longitude Latitude : " + keyValue);
+                        JPanel mainPanel = new JPanel(new BorderLayout());
+                        JLabel l = new JLabel("Longitude Latitude : " + keyValue, SwingConstants.CENTER);
                         mainPanel.setBorder(BorderFactory.createLineBorder(Color.black, 5, true));
-                        mainPanel.add(l);
+                        mainPanel.add(l, BorderLayout.CENTER);
+                        mainPanel.add(new JLabel("Testing", SwingConstants.CENTER), BorderLayout.LINE_START);
+                        mainPanel.add(new JLabel("Testing", SwingConstants.CENTER), BorderLayout.PAGE_START);
+                        mainPanel.add(new JLabel("Testing", SwingConstants.CENTER), BorderLayout.PAGE_END);
+                        mainPanel.add(new JLabel("Testing", SwingConstants.CENTER), BorderLayout.LINE_END);
+
                         jWindow.add(mainPanel);
                         mainPanel.setBackground(Color.WHITE);
                         jWindow.setSize(300, 200);
