@@ -9,7 +9,7 @@ import java.awt.event.WindowFocusListener;
 
 public class TrayUI {
     public static void main(String[] args) {
-        String keyValue = APIUtils.getKeyValue("https://freegeoip.app/json/", "longitude", "latitude");
+        String keyValue = APIUtils.getKeyValue("https://freegeoip.app/json/", "city");
         EventQueue.invokeLater(() -> {
 
             if (!SystemTray.isSupported()) {

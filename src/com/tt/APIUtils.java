@@ -39,7 +39,7 @@ public class APIUtils {
         }
         String response="";
         for (String key: responseKey) {
-            response = response + " " + jsonObject.getDouble(key);
+            response = response + " " + jsonObject.getString(key);
         }
         return response;
     }
