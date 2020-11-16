@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 public class APIUtils {
     private static JSONObject jsonObject;
 
-    public static String getKeysFromAPIResponse(String apiURL, String... responseKey) {
+    public static String[] getKeysFromAPIResponse(String apiURL, String... responseKey) {
         try {
             URL url = new URL(apiURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -42,44 +42,48 @@ public class APIUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String response="";
-        for (String key: responseKey) {
-            response = response + " " + jsonObject.getString(key);
-        }
-        getAnyKeyValueAsString(jsonObject);
-        return response;
+//        String response="";
+//        for (String key: responseKey) {
+//            response = response + " " + jsonObject.getString(key);
+//        }
+        return getAnyKeyValueAsString(jsonObject, responseKey);
     }
 
-    public static void getAnyKeyValueAsString(JSONObject json){
-        Iterator<String> iterator = json.keys();
-
-        if (iterator != null) {
-            while (iterator.hasNext()) {
-                String key = iterator.next();
-                Object value = json.get(key);
+    public static String[] getAnyKeyValueAsString(JSONObject json, String[] keys){
+        String[] values = new String[keys.length];
+            for (int k = 0 ; k < keys.length ; k++) {
+                System.out.println(k);
+                Object value = json.get(keys[k]);
+                System.out.println(value);
                 String dataType = value.getClass().getSimpleName();
 
-                if (dataType.equalsIgnoreCase("Integer")) {
-                    System.out.println("Key :" + key + " | type :int | value:" + value);
-
+                if (dataType.equalsIgnoreCase("String")) {
+                    System.out.println("Key :" + keys[k] + " | type :string | value:" + value);
+                    values[k] = (String) value;
                 } else if (dataType.equalsIgnoreCase("Long")) {
-                    System.out.println("Key :" + key + " | type :long | value:" + value);
+                    System.out.println("Key :" + keys[k] + " | type :long | value:" + value);
+                    values[k] = String.valueOf(value);
 
                 } else if (dataType.equalsIgnoreCase("Float")) {
-                    System.out.println("Key :" + key + " | type :float | value:" + value);
+                    System.out.println("Key :" + keys[k] + " | type :float | value:" + value);
+                    values[k] = String.valueOf(value);
 
                 } else if (dataType.equalsIgnoreCase("Double")) {
-                    System.out.println("Key :" + key + " | type :double | value:" + value);
+                    System.out.println("Key :" + keys[k] + " | type :double | value:" + value);
+                    values[k] = String.valueOf(value);
 
                 } else if (dataType.equalsIgnoreCase("Boolean")) {
-                    System.out.println("Key :" + key + " | type :bool | value:" + value);
+                    System.out.println("Key :" + keys[k] + " | type :bool | value:" + value);
+                    values[k] = String.valueOf(value);
 
-                } else if (dataType.equalsIgnoreCase("String")) {
-                    System.out.println("Key :" + key + " | type :string | value:" + value);
+                } else if (dataType.equalsIgnoreCase("Integer")) {
+                    System.out.println("Key :" + keys[k] + " | type :int | value:" + value);
+                    values[k] = String.valueOf(value);
+
                 }
             }
-        }
 
+        return values;
     }
 
     public static String getIPAddress(){
