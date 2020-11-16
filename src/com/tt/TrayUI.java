@@ -6,6 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
+import java.awt.geom.RoundRectangle2D;
 
 public class TrayUI {
     public static void main(String[] args) {
@@ -45,18 +46,18 @@ public class TrayUI {
                             jWindow = new JFrame();
                         }
                         JPanel mainPanel = new JPanel(new BorderLayout());
-                        JLabel l = new JLabel("<html><span style='font-size:80px'>" + "32°C" + "</span><br/><center>Feels like 35°C</center></html>", SwingConstants.CENTER);
+                        JLabel l = new JLabel("<html><span style='color:white;font-size:80px;'>" + "32°C" + "</span><br/><center style='color:white;font-size:15px;'>Feels like 35°C</center></html>", SwingConstants.CENTER);
                         //mainPanel.setBorder(BorderFactory.createLineBorder(Color.black, 5, true));
                         mainPanel.add(l, BorderLayout.CENTER);
                         //mainPanel.add(new JLabel("Testing", SwingConstants.CENTER), BorderLayout.LINE_START);
                         //mainPanel.add(new JLabel("Testing", SwingConstants.CENTER), BorderLayout.LINE_END);
-                        mainPanel.add(new JLabel("<html><span style='font-size:15px'>" + keyValue + "</span></html>", SwingConstants.CENTER), BorderLayout.PAGE_START);
+                        mainPanel.add(new JLabel("<html><span style='color:white;font-size:20px;'>" + keyValue + "</span></html>", SwingConstants.CENTER), BorderLayout.PAGE_START);
                         //JLabel pageEnd = new JLabel("Feels like 35°C", SwingConstants.CENTER);
                         //pageEnd.setVerticalTextPosition(JLabel.TOP);
                         //mainPanel.add(pageEnd, BorderLayout.PAGE_END);
 
                         jWindow.add(mainPanel);
-                        mainPanel.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
+                        mainPanel.setBackground(new Color(0.0f,0.0f,0.0f,0.15f));
                         //mainPanel.setBackground(Color.WHITE);
                         jWindow.setSize(300, 200);
                         Point point1 = e.getPoint(); //system tray icon click x,y/co-ords
@@ -85,7 +86,10 @@ public class TrayUI {
                         jWindow.setType(Window.Type.UTILITY);
                         jWindow.setAlwaysOnTop(true);
                         jWindow.setUndecorated(true);
-                        jWindow.setBackground(new Color(1.0f,1.0f,1.0f,0.5f));
+                        jWindow.setShape(new RoundRectangle2D.Double(0, 0, 300, 200, 20, 20));
+                        //jWindow.setOpacity(0.55f);
+                        //l.setBackground(new Color(0,0,0,1));
+                        jWindow.setBackground(new Color(0.0f,0.0f,0.0f,0.15f));
                         jWindow.setVisible(true);
                         jWindow.setFocusable(true);
                         jWindow.addWindowFocusListener(new WindowFocusListener() {
