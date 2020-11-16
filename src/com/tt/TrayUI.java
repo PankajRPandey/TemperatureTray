@@ -10,7 +10,8 @@ import java.awt.geom.RoundRectangle2D;
 
 public class TrayUI {
     public static void main(String[] args) {
-        String keyValue = APIUtils.getKeyValue("https://freegeoip.app/json/", "city");
+        String keyValue = APIUtils.getKeysFromAPIResponse("https://freegeoip.app/json/", "city");
+        System.out.println(APIUtils.getIPAddress());
         EventQueue.invokeLater(() -> {
 
             if (!SystemTray.isSupported()) {
@@ -57,7 +58,7 @@ public class TrayUI {
                         //mainPanel.add(pageEnd, BorderLayout.PAGE_END);
 
                         jWindow.add(mainPanel);
-                        mainPanel.setBackground(new Color(0.0f,0.0f,0.0f,0.15f));
+                        mainPanel.setBackground(new Color(0.0f,0.0f,0.0f,0.20f));
                         //mainPanel.setBackground(Color.WHITE);
                         jWindow.setSize(300, 200);
                         Point point1 = e.getPoint(); //system tray icon click x,y/co-ords
@@ -87,9 +88,9 @@ public class TrayUI {
                         jWindow.setAlwaysOnTop(true);
                         jWindow.setUndecorated(true);
                         jWindow.setShape(new RoundRectangle2D.Double(0, 0, 300, 200, 20, 20));
-                        //jWindow.setOpacity(0.55f);
+                        jWindow.setOpacity(0.55f);
                         //l.setBackground(new Color(0,0,0,1));
-                        jWindow.setBackground(new Color(0.0f,0.0f,0.0f,0.15f));
+                        jWindow.setBackground(new Color(0.0f,0.0f,0.0f));
                         jWindow.setVisible(true);
                         jWindow.setFocusable(true);
                         jWindow.addWindowFocusListener(new WindowFocusListener() {
@@ -97,7 +98,6 @@ public class TrayUI {
                             public void windowGainedFocus(WindowEvent e) {
 
                             }
-
                             @Override
                             public void windowLostFocus(WindowEvent e) {
                                 jWindow.dispose();
