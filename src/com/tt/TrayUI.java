@@ -10,8 +10,8 @@ import java.awt.geom.RoundRectangle2D;
 
 public class TrayUI {
     public static void main(String[] args) {
-        String keyValue = APIUtils.getKeysFromAPIResponse("https://freegeoip.app/json/", "city");
-        System.out.println(APIUtils.getIPAddress());
+        String[] geoAPIKeyValue = APIUtils.getKeysFromAPIResponse("https://freegeoip.app/json/", "city", "ip");
+        //System.out.println(APIUtils.getIPAddress());
         EventQueue.invokeLater(() -> {
 
             if (!SystemTray.isSupported()) {
@@ -43,19 +43,22 @@ public class TrayUI {
 //          icon.displayMessage("TrayIcon Demo",
 //                  "This is an info message from TrayIcon demo",
 //                  TrayIcon.MessageType.INFO);
+                        String[] weatherAPIKeyValue = APIUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like");
+
                         if (jWindow == null) {
                             jWindow = new JFrame();
                         }
+
                         JPanel mainPanel = new JPanel(new BorderLayout());
-                        JLabel l = new JLabel("<html><span style='color:white;font-size:80px;'>" + "32°C" + "</span><br/><center style='color:white;font-size:15px;'>Feels like 35°C</center></html>", SwingConstants.CENTER);
+                        JLabel l = new JLabel("<html><span style='color:white;font-size:80px;'>" + weatherAPIKeyValue[0] + "°C" + "</span><i><center style='color:white;font-size:12px;'>Feels like "+ weatherAPIKeyValue[1] +"°C</center></i></html>", SwingConstants.CENTER);
                         //mainPanel.setBorder(BorderFactory.createLineBorder(Color.black, 5, true));
                         mainPanel.add(l, BorderLayout.CENTER);
                         //mainPanel.add(new JLabel("Testing", SwingConstants.CENTER), BorderLayout.LINE_START);
                         //mainPanel.add(new JLabel("Testing", SwingConstants.CENTER), BorderLayout.LINE_END);
-                        mainPanel.add(new JLabel("<html><span style='color:white;font-size:20px;'>" + keyValue + "</span></html>", SwingConstants.CENTER), BorderLayout.PAGE_START);
-                        //JLabel pageEnd = new JLabel("Feels like 35°C", SwingConstants.CENTER);
-                        //pageEnd.setVerticalTextPosition(JLabel.TOP);
-                        //mainPanel.add(pageEnd, BorderLayout.PAGE_END);
+                        mainPanel.add(new JLabel("<html><span style='color:white;font-size:20px;'>" + geoAPIKeyValue[0] + "</span></html>", SwingConstants.CENTER), BorderLayout.PAGE_START);
+                        JLabel pageEnd = new JLabel("<html><span style='color:white;'>IP:" + geoAPIKeyValue[1] + "</span></html>", SwingConstants.CENTER);
+                        pageEnd.setVerticalTextPosition(JLabel.TOP);
+                        mainPanel.add(pageEnd, BorderLayout.PAGE_END);
 
                         jWindow.add(mainPanel);
                         mainPanel.setBackground(new Color(0.0f,0.0f,0.0f,0.20f));
