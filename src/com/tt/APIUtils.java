@@ -53,7 +53,15 @@ public class APIUtils {
         String[] values = new String[keys.length];
             for (int k = 0 ; k < keys.length ; k++) {
                 System.out.println(k);
-                Object value = json.get(keys[k]);
+                Object value;
+                if(keys[k].contains(".")){
+                    String[] objName = keys[k].split("\\.");
+                    JSONObject jsonObject = json.getJSONObject(objName[0]);
+                    value = jsonObject.get(objName[1]);
+                }else {
+                    value = json.get(keys[k]);
+                }
+
                 System.out.println(value);
                 String dataType = value.getClass().getSimpleName();
 
