@@ -7,6 +7,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import java.awt.geom.RoundRectangle2D;
+import java.time.LocalDate;
+import java.util.Calendar;
 
 public class TrayUI {
     public static void main(String[] args) {
@@ -43,7 +45,7 @@ public class TrayUI {
 //          icon.displayMessage("TrayIcon Demo",
 //                  "This is an info message from TrayIcon demo",
 //                  TrayIcon.MessageType.INFO);
-                        String[] weatherAPIKeyValue = {"44","32"};//APIUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like");
+                        String[] weatherAPIKeyValue = {"28","29"};//APIUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like");
 
                         if (jWindow == null) {
                             jWindow = new JFrame();
@@ -51,14 +53,14 @@ public class TrayUI {
 
                         JPanel mainPanel = new JPanel(new BorderLayout());
                         ImageIcon i = new ImageIcon("C:/Users/Pankaj/Downloads/10d@2x.png");
-                        JLabel l = new JLabel("<html><span style='color:white;font-size:60px;'>" + weatherAPIKeyValue[0] + "°C" + "</span></html>", i, SwingConstants.CENTER);
+                        JLabel l = new JLabel("<html><span style='color:white;font-size:60px;'>" + weatherAPIKeyValue[0] + "°C" + "</span></html>", i, SwingConstants.LEFT);
                         //mainPanel.setBorder(BorderFactory.createLineBorder(Color.black, 5, true));
                         mainPanel.add(l, BorderLayout.CENTER);
                         //mainPanel.add(new JLabel("Testing", SwingConstants.CENTER), BorderLayout.LINE_START);
                         //mainPanel.add(new JLabel("Testing", SwingConstants.CENTER), BorderLayout.LINE_END);
-                        mainPanel.add(new JLabel("<html><span style='color:white;font-size:25px;'>" + geoAPIKeyValue[0] + "</span></html>", SwingConstants.CENTER), BorderLayout.PAGE_START);
-                        JLabel pageEnd = new JLabel("<html><span style='color:white;font-size:15px;'><i>Feels like " + weatherAPIKeyValue[1] + "°C</i></span></html>", SwingConstants.CENTER);
-                        pageEnd.setVerticalTextPosition(JLabel.TOP);
+                        mainPanel.add(new JLabel("<html><center><span style='color:white;font-size:20px;'>" + geoAPIKeyValue[0] + "</span><br/><hr/><span style='color:white;font-size:12px;'><i>" + LocalDate.now().getDayOfWeek() + " &nbsp;/&nbsp; WEEK OF THE MONTH: " + Calendar.getInstance().get(Calendar.WEEK_OF_MONTH) + "</i></span></center></html>", SwingConstants.CENTER), BorderLayout.PAGE_START);
+                        JLabel pageEnd = new JLabel("<html><span style='color:white;font-size:15px;'><i>Feels like " + weatherAPIKeyValue[1] + "°C</i></span><br/>&nbsp;</html>", SwingConstants.CENTER);
+                        pageEnd.setVerticalTextPosition(JLabel.CENTER);
                         mainPanel.add(pageEnd, BorderLayout.PAGE_END);
 
                         jWindow.add(mainPanel);
@@ -92,7 +94,7 @@ public class TrayUI {
                         jWindow.setAlwaysOnTop(true);
                         jWindow.setUndecorated(true);
                         jWindow.setShape(new RoundRectangle2D.Double(0, 0, 300, 200, 20, 20));
-                        jWindow.setOpacity(0.55f);
+                        jWindow.setOpacity(0.80f);
                         //l.setBackground(new Color(0,0,0,1));
                         jWindow.setBackground(new Color(0.0f,0.0f,0.0f));
                         jWindow.setVisible(true);
