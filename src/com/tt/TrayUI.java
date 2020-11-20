@@ -53,13 +53,13 @@ public class TrayUI {
 
                         JPanel mainPanel = new JPanel(new BorderLayout());
                         ImageIcon i = new ImageIcon("C:/Users/Pankaj/Downloads/10d@2x.png");
-                        JLabel l = new JLabel("<html><span style='color:white;font-size:60px;'>" + weatherAPIKeyValue[0] + "°C" + "</span></html>", i, SwingConstants.LEFT);
+                        JLabel l = new JLabel("<html><span style='color:white;font-size:55px;'>" + weatherAPIKeyValue[0] + "°C" + "</span><br/>&nbsp;</html>", i, SwingConstants.LEFT);
                         //mainPanel.setBorder(BorderFactory.createLineBorder(Color.black, 5, true));
                         mainPanel.add(l, BorderLayout.CENTER);
                         //mainPanel.add(new JLabel("Testing", SwingConstants.CENTER), BorderLayout.LINE_START);
                         //mainPanel.add(new JLabel("Testing", SwingConstants.CENTER), BorderLayout.LINE_END);
-                        mainPanel.add(new JLabel("<html><center><span style='color:white;font-size:20px;'>" + geoAPIKeyValue[0] + "</span><br/><hr/><span style='color:white;font-size:12px;'><i>" + LocalDate.now().getDayOfWeek() + " &nbsp;/&nbsp; WEEK OF THE MONTH: " + Calendar.getInstance().get(Calendar.WEEK_OF_MONTH) + "</i></span></center></html>", SwingConstants.CENTER), BorderLayout.PAGE_START);
-                        JLabel pageEnd = new JLabel("<html><span style='color:white;font-size:15px;'><i>Feels like " + weatherAPIKeyValue[1] + "°C</i></span><br/>&nbsp;</html>", SwingConstants.CENTER);
+                        mainPanel.add(new JLabel("<html><center><span style='color:white;font-size:18px;'>" + geoAPIKeyValue[0] + "</span><br/><hr/><span style='color:white;font-size:10px;'><i>" + LocalDate.now().getDayOfWeek() + " &nbsp;/&nbsp; WEEK OF THE MONTH: " + Calendar.getInstance().get(Calendar.WEEK_OF_MONTH) + "</i></span></center></html>", SwingConstants.CENTER), BorderLayout.PAGE_START);
+                        JLabel pageEnd = new JLabel("<html><span style='color:white;font-size:15px;'><i>Feels like " + weatherAPIKeyValue[1] + "°C</i></span><br/><center style='color:white;font-size:12px;'>High 29°C&nbsp;&nbsp;Low 20°C</center>&nbsp;</html>", SwingConstants.CENTER);
                         pageEnd.setVerticalTextPosition(JLabel.CENTER);
                         mainPanel.add(pageEnd, BorderLayout.PAGE_END);
 
