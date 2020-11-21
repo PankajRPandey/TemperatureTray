@@ -1,5 +1,6 @@
 package com.tt;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -7,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import java.awt.geom.RoundRectangle2D;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Calendar;
 
@@ -16,6 +18,12 @@ public class TrayUI {
         //System.out.println(APIUtils.getIPAddress());
         EventQueue.invokeLater(() -> {
 
+//            try {
+//                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+//                e.printStackTrace();
+//            }
+
             if (!SystemTray.isSupported()) {
                 System.out.println("SystemTray is not supported");
                 System.exit(0);
@@ -23,7 +31,13 @@ public class TrayUI {
 
             SystemTray tray = SystemTray.getSystemTray();
             Toolkit toolkit = Toolkit.getDefaultToolkit();
-            Image image = toolkit.getImage("src/resources/tt.png");
+            Image image = null;
+            try {
+                image = ImageIO.read(TrayUI.class.getClassLoader().getResourceAsStream("resources/tt.png"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //toolkit.getImage("src/resources/tt.png");
 
             PopupMenu menu = new PopupMenu();
 
@@ -58,8 +72,8 @@ public class TrayUI {
                         mainPanel.add(l, BorderLayout.CENTER);
                         //mainPanel.add(new JLabel("Testing", SwingConstants.CENTER), BorderLayout.LINE_START);
                         //mainPanel.add(new JLabel("Testing", SwingConstants.CENTER), BorderLayout.LINE_END);
-                        mainPanel.add(new JLabel("<html><center><span style='color:white;font-size:18px;'>" + geoAPIKeyValue[0] + "</span><br/><hr/><span style='color:white;font-size:10px;'><i>" + LocalDate.now().getDayOfWeek() + " &nbsp;/&nbsp; WEEK OF THE MONTH: " + Calendar.getInstance().get(Calendar.WEEK_OF_MONTH) + "</i></span></center></html>", SwingConstants.CENTER), BorderLayout.PAGE_START);
-                        JLabel pageEnd = new JLabel("<html><span style='color:white;font-size:15px;'><i>Feels like " + weatherAPIKeyValue[1] + "°C</i></span><br/><center style='color:white;font-size:12px;'>High 29°C&nbsp;&nbsp;Low 20°C</center>&nbsp;</html>", SwingConstants.CENTER);
+                        mainPanel.add(new JLabel("<html><center><span style='color:white;font-size:18px;'>" + geoAPIKeyValue[0] + "</span><br/><hr/><span style='color:white;font-size:10px;'><i>" + LocalDate.now().getDayOfWeek() + " &nbsp;|&nbsp; WEEK OF THE MONTH: " + Calendar.getInstance().get(Calendar.WEEK_OF_MONTH) + "</i></span></center></html>", SwingConstants.CENTER), BorderLayout.PAGE_START);
+                        JLabel pageEnd = new JLabel("<html><center><span style='color:white;font-size:15px;'><i>Feels like " + weatherAPIKeyValue[1] + "°C</i></span><p style='color:white;font-size:12px;'>High 29°C &nbsp;&nbsp; | &nbsp;&nbsp; Low 20°C</p>&nbsp;</center></html>", SwingConstants.CENTER);
                         pageEnd.setVerticalTextPosition(JLabel.CENTER);
                         mainPanel.add(pageEnd, BorderLayout.PAGE_END);
 
