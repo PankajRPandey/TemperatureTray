@@ -9,6 +9,8 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import java.awt.geom.RoundRectangle2D;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.Calendar;
 
@@ -59,21 +61,35 @@ public class TrayUI {
 //          icon.displayMessage("TrayIcon Demo",
 //                  "This is an info message from TrayIcon demo",
 //                  TrayIcon.MessageType.INFO);
-                        String[] weatherAPIKeyValue = {"28","29"};//APIUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like");
+                        String[] weatherAPIKeyValue = {"20", "21", "24", "20", "50d"};//APIUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
 
                         if (jWindow == null) {
                             jWindow = new JFrame();
                         }
 
                         JPanel mainPanel = new JPanel(new BorderLayout());
-                        ImageIcon i = new ImageIcon("C:/Users/Pankaj/Downloads/10d@2x.png");
-                        JLabel l = new JLabel("<html><span style='color:white;font-size:55px;'>" + weatherAPIKeyValue[0] + "°C" + "</span><br/>&nbsp;</html>", i, SwingConstants.LEFT);
+                        //ImageIO.read(TrayUI.class.getClassLoader().getResourceAsStream("resources/tt.png"))
+
+                        URL url = null;
+                        Image imgIco = null;
+                        ImageIcon i = null;
+                        try {
+                            url = new URL("http://openweathermap.org/img/wn/" + weatherAPIKeyValue[4] + "@2x.png");
+                            imgIco = ImageIO.read(url);
+                            i = new ImageIcon(imgIco);
+
+                        } catch (IOException malformedURLException) {
+                            i = new ImageIcon("C:/Users/Pankaj/Downloads/10d@2x.png");
+                            malformedURLException.printStackTrace();
+                        }
+
+                        JLabel l = new JLabel("<html><center><span style='color:white;font-size:55px;'>" + weatherAPIKeyValue[0] + "°C" + "</span></center></html>", i, SwingConstants.LEFT);
                         //mainPanel.setBorder(BorderFactory.createLineBorder(Color.black, 5, true));
                         mainPanel.add(l, BorderLayout.CENTER);
                         //mainPanel.add(new JLabel("Testing", SwingConstants.CENTER), BorderLayout.LINE_START);
                         //mainPanel.add(new JLabel("Testing", SwingConstants.CENTER), BorderLayout.LINE_END);
                         mainPanel.add(new JLabel("<html><center><span style='color:white;font-size:18px;'>" + geoAPIKeyValue[0] + "</span><br/><hr/><span style='color:white;font-size:10px;'><i>" + LocalDate.now().getDayOfWeek() + " &nbsp;|&nbsp; WEEK OF THE MONTH: " + Calendar.getInstance().get(Calendar.WEEK_OF_MONTH) + "</i></span></center></html>", SwingConstants.CENTER), BorderLayout.PAGE_START);
-                        JLabel pageEnd = new JLabel("<html><center><span style='color:white;font-size:15px;'><i>Feels like " + weatherAPIKeyValue[1] + "°C</i></span><p style='color:white;font-size:12px;'>High 29°C &nbsp;&nbsp; | &nbsp;&nbsp; Low 20°C</p>&nbsp;</center></html>", SwingConstants.CENTER);
+                        JLabel pageEnd = new JLabel("<html><center><span style='color:white;font-size:15px;'><i>Feels like " + weatherAPIKeyValue[1] + "°C</i></span><p style='color:white;font-size:12px;'>High " + weatherAPIKeyValue[2] + "°C &nbsp;&nbsp; | &nbsp;&nbsp; Low " + weatherAPIKeyValue[3] + "°C</p></center></html>", SwingConstants.CENTER);
                         pageEnd.setVerticalTextPosition(JLabel.CENTER);
                         mainPanel.add(pageEnd, BorderLayout.PAGE_END);
 
