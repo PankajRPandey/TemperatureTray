@@ -1,5 +1,6 @@
 package com.tt;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -7,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,12 +49,12 @@ public class APIUtils {
         return getAnyKeyValueAsString(jsonObject, responseKey);
     }
 
-    public static void main(String[] args) {
-        String str = "{\"test\":\"ing\",\"weather\":[{\"id\":711,\"main\":\"Smoke\",\"description\":\"smoke\",\"icon\":\"50n\"}]}";
-        JSONObject json = new JSONObject(str);
-
-        System.out.println(getAnyKeyValueAsString(json, new String[]{"test"}));
-    }
+//    public static void main(String[] args) {
+//        String str = "{\"test\":\"ing\",\"weather\":[{\"id\":711,\"main\":\"Smoke\",\"description\":\"smoke\",\"icon\":\"50n\"}]}";
+//        JSONObject json = new JSONObject(str);
+//
+//        System.out.println(Arrays.toString(getAnyKeyValueAsString(json, new String[]{"weather.0.icon"})));
+//    }
 
     public static String[] getAnyKeyValueAsString(JSONObject json, String[] keys){
         String[] values = new String[keys.length];
@@ -61,8 +63,14 @@ public class APIUtils {
                 Object value;
                 if(keys[k].contains(".")){
                     String[] objName = keys[k].split("\\.");
-                    JSONObject jsonObject = json.getJSONObject(objName[0]);
-                    value = jsonObject.get(objName[1]);
+                    if (objName.length >= 3){
+                        JSONArray jsonArray = json.getJSONArray(objName[0]);
+                        JSONObject jsonObject = jsonArray.getJSONObject(Integer.parseInt(objName[1]));
+                        value = jsonObject.get(objName[2]);
+                    }else{
+                        JSONObject jsonObject = json.getJSONObject(objName[0]);
+                        value = jsonObject.get(objName[1]);
+                    }
                 }else {
                     value = json.get(keys[k]);
                 }
