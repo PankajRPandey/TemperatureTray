@@ -6,9 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -49,10 +47,17 @@ public class APIUtils {
         return getAnyKeyValueAsString(jsonObject, responseKey);
     }
 
+    public static void main(String[] args) {
+        String str = "{\"test\":\"ing\",\"weather\":[{\"id\":711,\"main\":\"Smoke\",\"description\":\"smoke\",\"icon\":\"50n\"}]}";
+        JSONObject json = new JSONObject(str);
+
+        System.out.println(getAnyKeyValueAsString(json, new String[]{"test"}));
+    }
+
     public static String[] getAnyKeyValueAsString(JSONObject json, String[] keys){
         String[] values = new String[keys.length];
+
             for (int k = 0 ; k < keys.length ; k++) {
-                System.out.println(k);
                 Object value;
                 if(keys[k].contains(".")){
                     String[] objName = keys[k].split("\\.");
