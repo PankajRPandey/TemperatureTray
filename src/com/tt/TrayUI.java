@@ -95,6 +95,14 @@ public class TrayUI {
 
                         jWindow.add(mainPanel);
                         mainPanel.setBackground(new Color(0.0f,0.0f,0.0f,0.20f));
+                        mainPanel.addMouseListener(new MouseAdapter() {
+                            @Override
+                            public void mouseClicked(MouseEvent e) {
+                                super.mouseClicked(e);
+                                mainPanel.setVisible(false);
+
+                            }
+                        });
                         //mainPanel.setBackground(Color.WHITE);
                         jWindow.setSize(300, 200);
                         Point point1 = e.getPoint(); //system tray icon click x,y/co-ords
