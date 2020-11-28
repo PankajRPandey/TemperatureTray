@@ -83,26 +83,21 @@ public class TrayUI {
                             malformedURLException.printStackTrace();
                         }
 
-                        JLabel l = new JLabel("<html><center><span style='color:white;font-size:55px;'>" + weatherAPIKeyValue[0] + "°C" + "</span></center></html>", i, SwingConstants.LEFT);
+                        JLabel centerLabel = new JLabel("<html><center><span style='color:white;font-size:55px;'>" + weatherAPIKeyValue[0] + "°C" + "</span></center></html>", i, SwingConstants.LEFT);
                         //mainPanel.setBorder(BorderFactory.createLineBorder(Color.black, 5, true));
-                        mainPanel.add(l, BorderLayout.CENTER);
+                        mainPanel.add(centerLabel, BorderLayout.CENTER);
                         //mainPanel.add(new JLabel("Testing", SwingConstants.CENTER), BorderLayout.LINE_START);
                         //mainPanel.add(new JLabel("Testing", SwingConstants.CENTER), BorderLayout.LINE_END);
-                        mainPanel.add(new JLabel("<html><center><span style='color:white;font-size:18px;'>" + geoAPIKeyValue[0] + "</span><br/><hr/><span style='color:white;font-size:10px;'><i>" + LocalDate.now().getDayOfWeek() + " &nbsp;|&nbsp; WEEK OF THE MONTH: " + Calendar.getInstance().get(Calendar.WEEK_OF_MONTH) + "</i></span></center></html>", SwingConstants.CENTER), BorderLayout.PAGE_START);
-                        JLabel pageEnd = new JLabel("<html><center><span style='color:white;font-size:15px;'><i>Feels like " + weatherAPIKeyValue[1] + "°C</i></span><p style='color:white;font-size:12px;'>High " + weatherAPIKeyValue[2] + "°C &nbsp;&nbsp; | &nbsp;&nbsp; Low " + weatherAPIKeyValue[3] + "°C</p></center></html>", SwingConstants.CENTER);
-                        pageEnd.setVerticalTextPosition(JLabel.CENTER);
-                        mainPanel.add(pageEnd, BorderLayout.PAGE_END);
+                        JLabel pageStartLabel = new JLabel("<html><center><span style='color:white;font-size:18px;'>" + geoAPIKeyValue[0] + "</span><br/><hr/><span style='color:white;font-size:10px;'><i>" + LocalDate.now().getDayOfWeek() + " &nbsp;|&nbsp; WEEK OF THE MONTH: " + Calendar.getInstance().get(Calendar.WEEK_OF_MONTH) + "</i></span></center></html>", SwingConstants.CENTER);
+
+                        mainPanel.add(pageStartLabel, BorderLayout.PAGE_START);
+                        JLabel pageEndLabel = new JLabel("<html><center><span style='color:white;font-size:15px;'><i>Feels like " + weatherAPIKeyValue[1] + "°C</i></span><p style='color:white;font-size:12px;'>High " + weatherAPIKeyValue[2] + "°C &nbsp;&nbsp; | &nbsp;&nbsp; Low " + weatherAPIKeyValue[3] + "°C</p></center></html>", SwingConstants.CENTER);
+                        pageEndLabel.setVerticalTextPosition(JLabel.CENTER);
+                        mainPanel.add(pageEndLabel, BorderLayout.PAGE_END);
 
                         jWindow.add(mainPanel);
                         mainPanel.setBackground(new Color(0.0f,0.0f,0.0f,0.20f));
-                        mainPanel.addMouseListener(new MouseAdapter() {
-                            @Override
-                            public void mouseClicked(MouseEvent e) {
-                                super.mouseClicked(e);
-                                mainPanel.setVisible(false);
 
-                            }
-                        });
                         //mainPanel.setBackground(Color.WHITE);
                         jWindow.setSize(300, 200);
                         Point point1 = e.getPoint(); //system tray icon click x,y/co-ords
