@@ -7,5 +7,8 @@ TemperatureTray is a simple Java Swing application that shows current temperatur
 
 ## Screenshots
 
-### Weather
-![Weather Panel](images/1_win_gradient_bg.png)
+### Weather Panel
+![Weather Panel](https://raw.githubusercontent.com/PankajRPandey/TemperatureTray/master/src/resources/tt_ss_24112020.png)
+
+### On Windows 10 (Taskbar located at Bottom)
+![Win10 BottomTaskbar](https://raw.githubusercontent.com/PankajRPandey/TemperatureTray/master/src/resources/tt_ss_windows10.png)
