@@ -1,5 +1,7 @@
 package com.tt;
 
+import com.sun.xml.internal.messaging.saaj.soap.JpegDataContentHandler;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -20,11 +22,11 @@ public class TrayUI {
         //System.out.println(APIUtils.getIPAddress());
         EventQueue.invokeLater(() -> {
 
-//            try {
-//                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+                e.printStackTrace();
+            }
 
             if (!SystemTray.isSupported()) {
                 System.out.println("SystemTray is not supported");
