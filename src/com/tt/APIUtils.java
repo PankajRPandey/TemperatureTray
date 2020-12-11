@@ -49,12 +49,12 @@ public class APIUtils {
         return getAnyKeyValueAsString(jsonObject, responseKey);
     }
 
-//    public static void main(String[] args) {
-//        String str = "{\"test\":\"ing\",\"weather\":[{\"id\":711,\"main\":\"Smoke\",\"description\":\"smoke\",\"icon\":\"50n\"}]}";
-//        JSONObject json = new JSONObject(str);
-//
-//        System.out.println(Arrays.toString(getAnyKeyValueAsString(json, new String[]{"weather.0.icon"})));
-//    }
+   public static void main(String[] args) {
+       String str = "{\"test\":\"ing\",\"weather\":[{\"id\":711,\"main\":\"Smoke\",\"description\":\"smoke\",\"icon\":\"50n\"}]}";
+       JSONObject json = new JSONObject(str);
+
+       System.out.println(Arrays.toString(getAnyKeyValueAsString(json, new String[]{"weather.0.icon"})));
+   }
 
     public static String[] getAnyKeyValueAsString(JSONObject json, String[] keys){
         String[] values = new String[keys.length];
