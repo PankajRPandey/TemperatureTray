@@ -85,7 +85,7 @@ public class TrayUI {
                             malformedURLException.printStackTrace();
                         }
 
-                        JLabel centerLabel = new JLabel("<html><center><span style='color:white;font-size:55px;'>" + weatherAPIKeyValue[0] + "°C" + "</span></center></html>", i, SwingConstants.LEFT);
+                        JLabel centerLabel = new JLabel("<html><center><span style='color:white;font-size:55px;'>" + Integer.parseInt(weatherAPIKeyValue[0]) + "°C" + "</span></center></html>", i, SwingConstants.LEFT);
                         //mainPanel.setBorder(BorderFactory.createLineBorder(Color.black, 5, true));
                         mainPanel.add(centerLabel, BorderLayout.CENTER);
                         //mainPanel.add(new JLabel("Testing", SwingConstants.CENTER), BorderLayout.LINE_START);
@@ -93,7 +93,7 @@ public class TrayUI {
                         JLabel pageStartLabel = new JLabel("<html><center><span style='color:white;font-size:18px;'>" + geoAPIKeyValue[0] + "</span><br/><hr/><span style='color:white;font-size:10px;'><i>" + LocalDate.now().getDayOfWeek() + " &nbsp;|&nbsp; WEEK OF THE MONTH: " + Calendar.getInstance().get(Calendar.WEEK_OF_MONTH) + "</i></span></center></html>", SwingConstants.CENTER);
 
                         mainPanel.add(pageStartLabel, BorderLayout.PAGE_START);
-                        JLabel pageEndLabel = new JLabel("<html><center><span style='color:white;font-size:15px;'><i>Feels like " + Integer.parseInt(weatherAPIKeyValue[1]) + "°C</i></span><p style='color:white;font-size:12px;'>High " + weatherAPIKeyValue[2] + "°C &nbsp;&nbsp; | &nbsp;&nbsp; Low " + weatherAPIKeyValue[3] + "°C</p></center></html>", SwingConstants.CENTER);
+                        JLabel pageEndLabel = new JLabel("<html><center><span style='color:white;font-size:15px;'><i>Feels like " + Integer.parseInt(weatherAPIKeyValue[1]) + "°C</i></span><p style='color:white;font-size:12px;'>High " + Integer.parseInt(weatherAPIKeyValue[2]) + "°C &nbsp;&nbsp; | &nbsp;&nbsp; Low " + Integer.parseInt(weatherAPIKeyValue[3]) + "°C</p></center></html>", SwingConstants.CENTER);
                         pageEndLabel.setVerticalTextPosition(JLabel.CENTER);
                         mainPanel.add(pageEndLabel, BorderLayout.PAGE_END);
 
