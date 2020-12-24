@@ -53,6 +53,8 @@ public class TrayUI {
 
             TrayIcon icon = new TrayIcon(Objects.requireNonNull(image), "Temperature Tray", menu);
             JLabel centerLabel = new JLabel();
+            JLabel pageStartLabel = new JLabel();
+            JLabel pageEndLabel = new JLabel();
 
             MouseAdapter mouseAdapter = new MouseAdapter() {
                 JFrame jWindow = null;
@@ -64,7 +66,7 @@ public class TrayUI {
 //                  TrayIcon.MessageType.INFO);
 
 
-                        String[] weatherAPIKeyValue = APIUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=c23fe1ffa04bef889b88134c60b2afbc", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
+                        String[] weatherAPIKeyValue = {"20", "21", "24", "20", "50d"}; //APIUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
 
                         if (jWindow == null) {
                             jWindow = new JFrame();
@@ -93,10 +95,13 @@ public class TrayUI {
                         mainPanel.add(centerLabel, BorderLayout.CENTER);
                         //mainPanel.add(new JLabel("Testing", SwingConstants.CENTER), BorderLayout.LINE_START);
                         //mainPanel.add(new JLabel("Testing", SwingConstants.CENTER), BorderLayout.LINE_END);
-                        JLabel pageStartLabel = new JLabel("<html><center><span style='color:white;font-size:18px;'>" + geoAPIKeyValue[0] + "</span><br/><hr/><span style='color:white;font-size:10px;'><i>" + LocalDate.now().getDayOfWeek() + " &nbsp;|&nbsp; WEEK OF THE MONTH: " + Calendar.getInstance().get(Calendar.WEEK_OF_MONTH) + "</i></span></center></html>", SwingConstants.CENTER);
-
+                        pageStartLabel.setText("<html><center><span style='color:white;font-size:18px;'>" + geoAPIKeyValue[0] + "</span><br/><hr/><span style='color:white;font-size:10px;'><i>" + LocalDate.now().getDayOfWeek() + " &nbsp;|&nbsp; WEEK OF THE MONTH: " + Calendar.getInstance().get(Calendar.WEEK_OF_MONTH) + "</i></span></center></html>");
+                        pageStartLabel.setHorizontalAlignment(SwingConstants.CENTER);
                         mainPanel.add(pageStartLabel, BorderLayout.PAGE_START);
-                        JLabel pageEndLabel = new JLabel("<html><center><span style='color:white;font-size:15px;'><i>Feels like " + weatherAPIKeyValue[1] + "°C</i></span><p style='color:white;font-size:12px;'>High " + weatherAPIKeyValue[2] + "°C &nbsp;&nbsp; | &nbsp;&nbsp; Low " + weatherAPIKeyValue[3] + "°C</p></center></html>", SwingConstants.CENTER);
+
+
+                        pageEndLabel.setText("<html><center><span style='color:white;font-size:15px;'><i>Feels like " + weatherAPIKeyValue[1] + "°C</i></span><p style='color:white;font-size:12px;'>High " + weatherAPIKeyValue[2] + "°C &nbsp;&nbsp; | &nbsp;&nbsp; Low " + weatherAPIKeyValue[3] + "°C</p></center></html>");
+                        pageEndLabel.setHorizontalAlignment(SwingConstants.CENTER);
                         pageEndLabel.setVerticalTextPosition(JLabel.CENTER);
                         mainPanel.add(pageEndLabel, BorderLayout.PAGE_END);
 
