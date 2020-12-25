@@ -32,14 +32,12 @@ public class TrayUI {
             }
 
             SystemTray tray = SystemTray.getSystemTray();
-            //Toolkit toolkit = Toolkit.getDefaultToolkit();
             Image image = null;
             try {
                 image = ImageIO.read(Objects.requireNonNull(TrayUI.class.getClassLoader().getResourceAsStream("resources/tt.png")));
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            //toolkit.getImage("src/resources/tt.png");
 
             PopupMenu menu = new PopupMenu();
 
@@ -55,25 +53,24 @@ public class TrayUI {
             JLabel centerLabel = new JLabel();
             JLabel pageStartLabel = new JLabel();
             JLabel pageEndLabel = new JLabel();
+            JPanel mainPanel = new JPanel(new BorderLayout());
 
             MouseAdapter mouseAdapter = new MouseAdapter() {
                 JFrame jWindow = null;
 
                 public void mouseClicked(MouseEvent e) {
                     if (e.getButton() == MouseEvent.BUTTON1) {
-//          icon.displayMessage("TrayIcon Demo",
-//                  "This is an info message from TrayIcon demo",
-//                  TrayIcon.MessageType.INFO);
 
-
-                        String[] weatherAPIKeyValue = {"20", "21", "24", "20", "50d"}; //APIUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
+                        //{"20", "21", "24", "20", "50d"};
+                        String[] weatherAPIKeyValue = {"20.55", "21.66", "24.77", "20.44", "50d"}; APIUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
 
                         if (jWindow == null) {
                             jWindow = new JFrame();
+                            jWindow.add(mainPanel);
+                            mainPanel.setBackground(new Color(0.0f,0.0f,0.0f,0.20f));
                         }
 
-                        JPanel mainPanel = new JPanel(new BorderLayout());
-                        //ImageIO.read(TrayUI.class.getClassLoader().getResourceAsStream("resources/tt.png"))
+
 
                         URL url;
                         Image imgIco;
@@ -88,13 +85,11 @@ public class TrayUI {
                             malformedURLException.printStackTrace();
                         }
 
-                        //JLabel centerLabel = new JLabel("<html><center><span style='color:white;font-size:55px;'>" + weatherAPIKeyValue[0] + "°C" + "</span></center></html>", i, SwingConstants.LEFT);
                         centerLabel.setIcon(i);
                         centerLabel.setText("<html><center><span style='color:white;font-size:55px;'>" + weatherAPIKeyValue[0] + "°C" + "</span></center></html>");
-                        //mainPanel.setBorder(BorderFactory.createLineBorder(Color.black, 5, true));
                         mainPanel.add(centerLabel, BorderLayout.CENTER);
-                        //mainPanel.add(new JLabel("Testing", SwingConstants.CENTER), BorderLayout.LINE_START);
-                        //mainPanel.add(new JLabel("Testing", SwingConstants.CENTER), BorderLayout.LINE_END);
+
+
                         pageStartLabel.setText("<html><center><span style='color:white;font-size:18px;'>" + geoAPIKeyValue[0] + "</span><br/><hr/><span style='color:white;font-size:10px;'><i>" + LocalDate.now().getDayOfWeek() + " &nbsp;|&nbsp; WEEK OF THE MONTH: " + Calendar.getInstance().get(Calendar.WEEK_OF_MONTH) + "</i></span></center></html>");
                         pageStartLabel.setHorizontalAlignment(SwingConstants.CENTER);
                         mainPanel.add(pageStartLabel, BorderLayout.PAGE_START);
@@ -105,20 +100,14 @@ public class TrayUI {
                         pageEndLabel.setVerticalTextPosition(JLabel.CENTER);
                         mainPanel.add(pageEndLabel, BorderLayout.PAGE_END);
 
-                        jWindow.add(mainPanel);
-                        mainPanel.setBackground(new Color(0.0f,0.0f,0.0f,0.20f));
-
-                        //mainPanel.setBackground(Color.WHITE);
                         jWindow.setSize(300, 200);
                         Point point1 = e.getPoint(); //system tray icon click x,y/co-ords
-                        //System.out.println(point1);
                         Rectangle windowSize = GraphicsEnvironment.getLocalGraphicsEnvironment()
                                 .getMaximumWindowBounds();
                         String os = System.getProperty("os.name");
                         if (os.contains("Windows")) {
                             if (point1.y <= 300) {
                                 Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-                                //
                                 jWindow.setLocation(point1.x, (screenSize.height - windowSize.height) - 6 /*windowSize.width - 200 + 6, 6*/);
                                 //System.out.println(point1.x + " " + (screenSize.height - windowSize.height));
                             } else {
@@ -139,7 +128,6 @@ public class TrayUI {
                         jWindow.setUndecorated(true);
                         jWindow.setShape(new RoundRectangle2D.Double(0, 0, 300, 200, 20, 20));
                         jWindow.setOpacity(0.80f);
-                        //l.setBackground(new Color(0,0,0,1));
                         jWindow.setBackground(new Color(0.0f,0.0f,0.0f));
                         jWindow.setVisible(true);
                         jWindow.setFocusable(true);
