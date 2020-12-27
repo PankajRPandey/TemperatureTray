@@ -53,7 +53,28 @@ public class TrayUI {
             JLabel centerLabel = new JLabel();
             JLabel pageStartLabel = new JLabel();
             JLabel pageEndLabel = new JLabel();
-            JPanel mainPanel = new JPanel(new BorderLayout());
+
+
+            JPanel mainPanel = new JPanel(new BorderLayout()){
+                @Override
+                protected void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    Dimension arcs = new Dimension(30,30);
+                    int width = getWidth();
+                    int height = getHeight();
+                    Graphics2D graphics = (Graphics2D) g;
+                    graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                    //Draws the rounded opaque panel
+                    graphics.setColor(new Color(0.0f,0.0f,0.0f,0.80f));
+                    graphics.fillRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height);//paint background
+                    //graphics.setColor(new Color(0.0f,0.0f,0.0f,0.80f));
+                    //graphics.drawRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height);//paint border
+                }
+            };
+
+
+            //JPanel mainPanel = new JPanel(new BorderLayout());
 
             MouseAdapter mouseAdapter = new MouseAdapter() {
                 JFrame jWindow = null;
@@ -61,13 +82,13 @@ public class TrayUI {
                 public void mouseClicked(MouseEvent e) {
                     if (e.getButton() == MouseEvent.BUTTON1) {
 
-                        //{"20", "21", "24", "20", "50d"};
-                        String[] weatherAPIKeyValue = {"20.55", "21.66", "24.77", "20.44", "50d"}; APIUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
+                        //{"20.55", "21.66", "24.77", "20.44", "50d"};
+                        String[] weatherAPIKeyValue = {"20.55", "21.66", "24.77", "20.44", "50d"}; //APIUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
 
                         if (jWindow == null) {
                             jWindow = new JFrame();
                             jWindow.add(mainPanel);
-                            mainPanel.setBackground(new Color(0.0f,0.0f,0.0f,0.20f));
+                            mainPanel.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
                         }
 
 
@@ -90,14 +111,14 @@ public class TrayUI {
                         mainPanel.add(centerLabel, BorderLayout.CENTER);
 
 
-                        pageStartLabel.setText("<html><center><span style='color:white;font-size:18px;'>" + geoAPIKeyValue[0] + "</span><br/><hr/><span style='color:white;font-size:10px;'><i>" + LocalDate.now().getDayOfWeek() + " &nbsp;|&nbsp; WEEK OF THE MONTH: " + Calendar.getInstance().get(Calendar.WEEK_OF_MONTH) + "</i></span></center></html>");
+                        pageStartLabel.setText("<html><center><span style='color:white;font-size:18px;'><b>" + geoAPIKeyValue[0] + "</b></span><br/><hr/><span style='color:white;font-size:10px;'><b>" + LocalDate.now().getDayOfWeek() + " &nbsp;|&nbsp; WEEK OF THE MONTH: " + Calendar.getInstance().get(Calendar.WEEK_OF_MONTH) + "</b></span></center></html>");
                         pageStartLabel.setHorizontalAlignment(SwingConstants.CENTER);
                         mainPanel.add(pageStartLabel, BorderLayout.PAGE_START);
 
 
-                        pageEndLabel.setText("<html><center><span style='color:white;font-size:15px;'><i>Feels like " + weatherAPIKeyValue[1] + "°C</i></span><p style='color:white;font-size:12px;'>High " + weatherAPIKeyValue[2] + "°C &nbsp;&nbsp; | &nbsp;&nbsp; Low " + weatherAPIKeyValue[3] + "°C</p></center></html>");
+                        pageEndLabel.setText("<html><center><span style='color:white;font-size:15px;'><i>Feels like " + weatherAPIKeyValue[1] + "°C</i></span><br/><span style='color:white;font-size:12px;font-weight:bold;'>High " + weatherAPIKeyValue[2] + "°C &nbsp;&nbsp; | &nbsp;&nbsp; Low " + weatherAPIKeyValue[3] + "°C</span></center></html>");
                         pageEndLabel.setHorizontalAlignment(SwingConstants.CENTER);
-                        pageEndLabel.setVerticalTextPosition(JLabel.CENTER);
+                        //pageEndLabel.setVerticalTextPosition(JLabel.TOP);
                         mainPanel.add(pageEndLabel, BorderLayout.PAGE_END);
 
                         jWindow.setSize(300, 200);
@@ -126,9 +147,9 @@ public class TrayUI {
                         jWindow.setType(Window.Type.UTILITY);
                         jWindow.setAlwaysOnTop(true);
                         jWindow.setUndecorated(true);
-                        jWindow.setShape(new RoundRectangle2D.Double(0, 0, 300, 200, 20, 20));
-                        jWindow.setOpacity(0.80f);
-                        jWindow.setBackground(new Color(0.0f,0.0f,0.0f));
+                        //jWindow.setShape(new RoundRectangle2D.Double(0, 0, 300, 200, 20, 20));
+                        jWindow.setOpacity(0.90f);
+                        jWindow.setBackground(new Color(1.0f,1.0f,1.0f, 0.0f));
                         jWindow.setVisible(true);
                         jWindow.setFocusable(true);
                         jWindow.addWindowFocusListener(new WindowFocusListener() {
