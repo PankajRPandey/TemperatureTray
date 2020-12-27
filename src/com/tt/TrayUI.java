@@ -59,7 +59,7 @@ public class TrayUI {
                 @Override
                 protected void paintComponent(Graphics g) {
                     super.paintComponent(g);
-                    Dimension arcs = new Dimension(30,30);
+                    Dimension arcs = new Dimension(15,15);
                     int width = getWidth();
                     int height = getHeight();
                     Graphics2D graphics = (Graphics2D) g;
@@ -116,7 +116,7 @@ public class TrayUI {
                         mainPanel.add(pageStartLabel, BorderLayout.PAGE_START);
 
 
-                        pageEndLabel.setText("<html><center><span style='color:white;font-size:15px;'><i>Feels like " + weatherAPIKeyValue[1] + "°C</i></span><br/><span style='color:white;font-size:12px;font-weight:bold;'>High " + weatherAPIKeyValue[2] + "°C &nbsp;&nbsp; | &nbsp;&nbsp; Low " + weatherAPIKeyValue[3] + "°C</span></center></html>");
+                        pageEndLabel.setText("<html><center><span style='color:white;font-size:15px;'><i>Feels like " + weatherAPIKeyValue[1] + "°C</i></span><br/><span style='color:white;font-size:10px;font-weight:bold;'>HIGH " + weatherAPIKeyValue[2] + "°C &nbsp;&nbsp; | &nbsp;&nbsp; LOW " + weatherAPIKeyValue[3] + "°C</span></center></html>");
                         pageEndLabel.setHorizontalAlignment(SwingConstants.CENTER);
                         //pageEndLabel.setVerticalTextPosition(JLabel.TOP);
                         mainPanel.add(pageEndLabel, BorderLayout.PAGE_END);
