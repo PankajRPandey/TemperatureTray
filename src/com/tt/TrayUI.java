@@ -74,7 +74,11 @@ public class TrayUI {
             };
 
 
-            //JPanel mainPanel = new JPanel(new BorderLayout());
+            JPanel sysPanel = new JPanel(new BorderLayout()); //NEW
+            CardLayout card = new CardLayout(); //NEW
+            final Container[] c = new Container[1];//NEW
+
+
 
             MouseAdapter mouseAdapter = new MouseAdapter() {
                 JFrame jWindow = null;
@@ -87,9 +91,22 @@ public class TrayUI {
 
                         if (jWindow == null) {
                             jWindow = new JFrame();
-                            jWindow.add(mainPanel);
+                            c[0] = jWindow.getContentPane();//NEW
+                            c[0].setLayout(card);//NEW
+
+                            c[0].add("A", mainPanel);
+                            c[0].add("B", sysPanel);//NEW
                             mainPanel.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
                         }
+
+
+                        jWindow.addMouseListener(new MouseAdapter() {
+                            @Override
+                            public void mouseClicked(MouseEvent e) {
+                                super.mouseClicked(e);
+                                card.next(c[0]);
+                            }
+                        });
 
 
 
@@ -154,9 +171,8 @@ public class TrayUI {
                         jWindow.setFocusable(true);
                         jWindow.addWindowFocusListener(new WindowFocusListener() {
                             @Override
-                            public void windowGainedFocus(WindowEvent e) {
+                            public void windowGainedFocus(WindowEvent e) {}
 
-                            }
                             @Override
                             public void windowLostFocus(WindowEvent e) {
                                 mainPanel.revalidate();
