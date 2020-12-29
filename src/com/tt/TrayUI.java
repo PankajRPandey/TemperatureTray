@@ -53,7 +53,8 @@ public class TrayUI {
             JLabel centerLabel = new JLabel();
             JLabel pageStartLabel = new JLabel();
             JLabel pageEndLabel = new JLabel();
-
+            JLabel sysPnlCenterLbl = new JLabel();
+            JLabel sysPnlPageStartLbl = new JLabel();
 
             JPanel mainPanel = new JPanel(new BorderLayout()){
                 @Override
@@ -74,7 +75,23 @@ public class TrayUI {
             };
 
 
-            JPanel sysPanel = new JPanel(new BorderLayout()); //NEW
+            JPanel sysPanel = new JPanel(new BorderLayout()){
+                @Override
+                protected void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    Dimension arcs = new Dimension(15,15);
+                    int width = getWidth();
+                    int height = getHeight();
+                    Graphics2D graphics = (Graphics2D) g;
+                    graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                    //Draws the rounded opaque panel
+                    graphics.setColor(new Color(0.0f,0.0f,0.0f,0.80f));
+                    graphics.fillRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height);//paint background
+                    //graphics.setColor(new Color(0.0f,0.0f,0.0f,0.80f));
+                    //graphics.drawRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height);//paint border
+                }
+            }; //NEW
             CardLayout card = new CardLayout(); //NEW
             final Container[] c = new Container[1];//NEW
 
@@ -97,6 +114,7 @@ public class TrayUI {
                             c[0].add("A", mainPanel);
                             c[0].add("B", sysPanel);//NEW
                             mainPanel.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
+                            sysPanel.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
                         }
 
 
@@ -137,6 +155,15 @@ public class TrayUI {
                         pageEndLabel.setHorizontalAlignment(SwingConstants.CENTER);
                         //pageEndLabel.setVerticalTextPosition(JLabel.TOP);
                         mainPanel.add(pageEndLabel, BorderLayout.PAGE_END);
+
+                        sysPnlPageStartLbl.setText("<html><center><span style='color:white;font-size:18px;'><b>System Temperature</b></span><br/><hr/></center></html>");
+                        sysPnlPageStartLbl.setHorizontalAlignment(SwingConstants.CENTER);
+                        sysPanel.add(sysPnlPageStartLbl, BorderLayout.PAGE_START);
+
+                        sysPnlCenterLbl.setText("<html><body style='color:white;font-size:12px;'><center><span>CPU....Intel Core i7</span><br/></center></body></html>");
+                        sysPnlCenterLbl.setHorizontalAlignment(SwingConstants.CENTER);
+                        sysPanel.add(sysPnlCenterLbl, BorderLayout.CENTER);
+
 
                         jWindow.setSize(300, 200);
                         Point point1 = e.getPoint(); //system tray icon click x,y/co-ords
