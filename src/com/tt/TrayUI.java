@@ -1,5 +1,10 @@
 package com.tt;
 
+import com.profesorfalken.jsensors.JSensors;
+import com.profesorfalken.jsensors.model.components.Components;
+import com.profesorfalken.jsensors.model.components.Cpu;
+import com.profesorfalken.jsensors.model.sensors.Temperature;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -56,45 +61,44 @@ public class TrayUI {
             JLabel sysPnlCenterLbl = new JLabel();
             JLabel sysPnlPageStartLbl = new JLabel();
 
-            JPanel mainPanel = new JPanel(new BorderLayout()){
+            JPanel mainPanel = new JPanel(new BorderLayout()) {
                 @Override
                 protected void paintComponent(Graphics g) {
                     super.paintComponent(g);
-                    Dimension arcs = new Dimension(15,15);
+                    Dimension arcs = new Dimension(15, 15);
                     int width = getWidth();
                     int height = getHeight();
                     Graphics2D graphics = (Graphics2D) g;
                     graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
                     //Draws the rounded opaque panel
-                    graphics.setColor(new Color(0.0f,0.0f,0.0f,0.80f));
-                    graphics.fillRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height);//paint background
+                    graphics.setColor(new Color(0.0f, 0.0f, 0.0f, 0.80f));
+                    graphics.fillRoundRect(0, 0, width - 1, height - 1, arcs.width, arcs.height);//paint background
                     //graphics.setColor(new Color(0.0f,0.0f,0.0f,0.80f));
                     //graphics.drawRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height);//paint border
                 }
             };
 
 
-            JPanel sysPanel = new JPanel(new BorderLayout()){
+            JPanel sysPanel = new JPanel(new BorderLayout()) {
                 @Override
                 protected void paintComponent(Graphics g) {
                     super.paintComponent(g);
-                    Dimension arcs = new Dimension(15,15);
+                    Dimension arcs = new Dimension(15, 15);
                     int width = getWidth();
                     int height = getHeight();
                     Graphics2D graphics = (Graphics2D) g;
                     graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
                     //Draws the rounded opaque panel
-                    graphics.setColor(new Color(0.0f,0.0f,0.0f,0.80f));
-                    graphics.fillRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height);//paint background
+                    graphics.setColor(new Color(0.0f, 0.0f, 0.0f, 0.80f));
+                    graphics.fillRoundRect(0, 0, width - 1, height - 1, arcs.width, arcs.height);//paint background
                     //graphics.setColor(new Color(0.0f,0.0f,0.0f,0.80f));
                     //graphics.drawRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height);//paint border
                 }
             }; //NEW
             CardLayout card = new CardLayout(); //NEW
             final Container[] c = new Container[1];//NEW
-
 
 
             MouseAdapter mouseAdapter = new MouseAdapter() {
@@ -113,8 +117,8 @@ public class TrayUI {
 
                             c[0].add("A", mainPanel);
                             c[0].add("B", sysPanel);//NEW
-                            mainPanel.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
-                            sysPanel.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
+                            mainPanel.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.0f));
+                            sysPanel.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.0f));
                         }
 
 
@@ -125,7 +129,6 @@ public class TrayUI {
                                 card.next(c[0]);
                             }
                         });
-
 
 
                         URL url;
@@ -160,7 +163,7 @@ public class TrayUI {
                         sysPnlPageStartLbl.setHorizontalAlignment(SwingConstants.CENTER);
                         sysPanel.add(sysPnlPageStartLbl, BorderLayout.PAGE_START);
 
-                        sysPnlCenterLbl.setText("<html><body style='color:white;font-size:12px;'><center><span>CPU....Intel Core i7</span><br/></center></body></html>");
+                        sysPnlCenterLbl.setText("<html><body style='color:white;font-size:12px;'><center><span>CPU................................Intel Core i7</span><br/><span>CPU................................Intel Core i7</span><br/><span>CPU................................Intel Core i7</span><br/><span>CPU................................Intel Core i7</span><br/><span>CPU................................Intel Core i7</span><br/><span>CPU................................Intel Core i7</span><br/><span>CPU................................Intel Core i7</span><br/><span>CPU................................Intel Core i7</span><br/><span>CPU................................Intel Core i7</span><br/><span>CPU................................Intel Core i7</span><br/><span>CPU................................Intel Core i7</span><br/></center></body></html>");
                         sysPnlCenterLbl.setHorizontalAlignment(SwingConstants.CENTER);
                         sysPanel.add(sysPnlCenterLbl, BorderLayout.CENTER);
 
@@ -193,12 +196,13 @@ public class TrayUI {
                         jWindow.setUndecorated(true);
                         //jWindow.setShape(new RoundRectangle2D.Double(0, 0, 300, 200, 20, 20));
                         jWindow.setOpacity(0.90f);
-                        jWindow.setBackground(new Color(1.0f,1.0f,1.0f, 0.0f));
+                        jWindow.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.0f));
                         jWindow.setVisible(true);
                         jWindow.setFocusable(true);
                         jWindow.addWindowFocusListener(new WindowFocusListener() {
                             @Override
-                            public void windowGainedFocus(WindowEvent e) {}
+                            public void windowGainedFocus(WindowEvent e) {
+                            }
 
                             @Override
                             public void windowLostFocus(WindowEvent e) {
@@ -220,4 +224,24 @@ public class TrayUI {
             }
         });
     }
+
+    public void getDeviceTemperature() {
+        Components components = JSensors.get.components();
+        java.util.List<Cpu> cpus = components.cpus;
+        if (cpus != null) {
+            for (final Cpu cpu : cpus) {
+                System.out.println("Found CPU component: " + cpu.name);
+                if (cpu.sensors != null) {
+                    System.out.println("Sensors: ");
+
+                    //Print temperatures
+                    java.util.List<Temperature> temps = cpu.sensors.temperatures;
+                    for (final Temperature temp : temps) {
+                        System.out.println(temp.name + ": " + temp.value + " C");
+                    }
+                }
+            }
+        }
+    }
+
 }
