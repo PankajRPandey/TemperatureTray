@@ -99,6 +99,7 @@ public class TrayUI {
             }; //NEW
             CardLayout card = new CardLayout(); //NEW
             final Container[] c = new Container[1];//NEW
+            final String[] metaData = {getDeviceTemperature()};
 
 
             MouseAdapter mouseAdapter = new MouseAdapter() {
@@ -163,7 +164,16 @@ public class TrayUI {
                         sysPnlPageStartLbl.setHorizontalAlignment(SwingConstants.CENTER);
                         sysPanel.add(sysPnlPageStartLbl, BorderLayout.PAGE_START);
 
-                        sysPnlCenterLbl.setText("<html><body style='color:white;font-size:12px;'><center><span>CPU................................Intel Core i7</span><br/><span>CPU................................Intel Core i7</span><br/><span>CPU................................Intel Core i7</span><br/><span>CPU................................Intel Core i7</span><br/><span>CPU................................Intel Core i7</span><br/><span>CPU................................Intel Core i7</span><br/><span>CPU................................Intel Core i7</span><br/><span>CPU................................Intel Core i7</span><br/><span>CPU................................Intel Core i7</span><br/><span>CPU................................Intel Core i7</span><br/><span>CPU................................Intel Core i7</span><br/></center></body></html>");
+
+                        //String[] mdArray = metaData.split(",");
+                        metaData[0] = metaData[0].replaceAll(",", "</br>");
+                        System.out.println(metaData[0]);
+//                        for (int j = 0; j < mdArray.length; j++) {
+//                            metaData = mdArray[j] + "</br>";
+//                        }
+
+
+                        sysPnlCenterLbl.setText("<html><body style='color:white;font-size:12px;'><center>"+ metaData[0] +"</center></body></html>");
                         sysPnlCenterLbl.setHorizontalAlignment(SwingConstants.CENTER);
                         sysPanel.add(sysPnlCenterLbl, BorderLayout.CENTER);
 
@@ -223,25 +233,36 @@ public class TrayUI {
                 e.printStackTrace();
             }
         });
+
     }
 
-    public void getDeviceTemperature() {
+    public static String getDeviceTemperature() {
         Components components = JSensors.get.components();
         java.util.List<Cpu> cpus = components.cpus;
+        StringBuilder sysMetaData = new StringBuilder("");
         if (cpus != null) {
+            int cpuCount = 0;
             for (final Cpu cpu : cpus) {
-                System.out.println("Found CPU component: " + cpu.name);
+                cpuCount++;
+                sysMetaData.append("CPU:" + cpu.name + ",");
+                //System.out.println("Found CPU component: " + cpu.name);
                 if (cpu.sensors != null) {
-                    System.out.println("Sensors: ");
-
                     //Print temperatures
                     java.util.List<Temperature> temps = cpu.sensors.temperatures;
                     for (final Temperature temp : temps) {
-                        System.out.println(temp.name + ": " + temp.value + " C");
+                        sysMetaData.append(temp.name + ":" + temp.value+",");
+                        //System.out.println(temp.name + ": " + temp.value + " C");
+                    }
+                    sysMetaData.deleteCharAt(sysMetaData.length()-1);
+                    if(cpuCount!=cpus.size()){
+                        sysMetaData.append("|");
                     }
                 }
             }
         }
+
+        System.out.println(sysMetaData);
+        return sysMetaData.toString();
     }
 
 }
