@@ -166,17 +166,18 @@ public class TrayUI {
 
 
                         //String[] mdArray = metaData.split(",");
-                        metaData[0] = metaData[0].replaceAll(",", "</br>");
+                        metaData[0] = metaData[0].replaceAll(",", "<br/>");
                         System.out.println(metaData[0]);
 //                        for (int j = 0; j < mdArray.length; j++) {
 //                            metaData = mdArray[j] + "</br>";
 //                        }
 
 
-                        sysPnlCenterLbl.setText("<html><body style='color:white;font-size:12px;'><center>"+ metaData[0] +"</center></body></html>");
+                        sysPnlCenterLbl.setText("<html><body style='color:white;font-size:15px;font-weight:bold;'>"+ metaData[0] +"</body></html>");
                         sysPnlCenterLbl.setHorizontalAlignment(SwingConstants.CENTER);
                         sysPanel.add(sysPnlCenterLbl, BorderLayout.CENTER);
 
+                        System.out.println(sysPnlCenterLbl.getText());
 
                         jWindow.setSize(300, 200);
                         Point point1 = e.getPoint(); //system tray icon click x,y/co-ords
@@ -244,13 +245,13 @@ public class TrayUI {
             int cpuCount = 0;
             for (final Cpu cpu : cpus) {
                 cpuCount++;
-                sysMetaData.append("CPU:" + cpu.name + ",");
+                sysMetaData.append("CPU: " + cpu.name + ",");
                 //System.out.println("Found CPU component: " + cpu.name);
                 if (cpu.sensors != null) {
                     //Print temperatures
                     java.util.List<Temperature> temps = cpu.sensors.temperatures;
                     for (final Temperature temp : temps) {
-                        sysMetaData.append(temp.name + ":" + temp.value+",");
+                        sysMetaData.append(temp.name + ": " + temp.value+"°C,");
                         //System.out.println(temp.name + ": " + temp.value + " C");
                     }
                     sysMetaData.deleteCharAt(sysMetaData.length()-1);
