@@ -12,7 +12,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
-import java.awt.geom.RoundRectangle2D;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -74,8 +73,6 @@ public class TrayUI {
                     //Draws the rounded opaque panel
                     graphics.setColor(new Color(0.0f, 0.0f, 0.0f, 0.80f));
                     graphics.fillRoundRect(0, 0, width - 1, height - 1, arcs.width, arcs.height);//paint background
-                    //graphics.setColor(new Color(0.0f,0.0f,0.0f,0.80f));
-                    //graphics.drawRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height);//paint border
                 }
             };
 
@@ -93,12 +90,10 @@ public class TrayUI {
                     //Draws the rounded opaque panel
                     graphics.setColor(new Color(0.0f, 0.0f, 0.0f, 0.80f));
                     graphics.fillRoundRect(0, 0, width - 1, height - 1, arcs.width, arcs.height);//paint background
-                    //graphics.setColor(new Color(0.0f,0.0f,0.0f,0.80f));
-                    //graphics.drawRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height);//paint border
                 }
-            }; //NEW
-            CardLayout card = new CardLayout(); //NEW
-            final Container[] c = new Container[1];//NEW
+            };
+            CardLayout card = new CardLayout();
+            final Container[] c = new Container[1];
             final String[] metaData = {getDeviceTemperature()};
 
 
@@ -164,13 +159,8 @@ public class TrayUI {
                         sysPnlPageStartLbl.setHorizontalAlignment(SwingConstants.CENTER);
                         sysPanel.add(sysPnlPageStartLbl, BorderLayout.PAGE_START);
 
-
-                        //String[] mdArray = metaData.split(",");
                         metaData[0] = metaData[0].replaceAll(",", "<br/>");
                         System.out.println(metaData[0]);
-//                        for (int j = 0; j < mdArray.length; j++) {
-//                            metaData = mdArray[j] + "</br>";
-//                        }
 
 
                         sysPnlCenterLbl.setText("<html><body style='color:white;font-size:15px;font-weight:bold;'>"+ metaData[0] +"</body></html>");
@@ -240,18 +230,18 @@ public class TrayUI {
     public static String getDeviceTemperature() {
         Components components = JSensors.get.components();
         java.util.List<Cpu> cpus = components.cpus;
-        StringBuilder sysMetaData = new StringBuilder("");
+        StringBuilder sysMetaData = new StringBuilder();
         if (cpus != null) {
             int cpuCount = 0;
             for (final Cpu cpu : cpus) {
                 cpuCount++;
-                sysMetaData.append("CPU: " + cpu.name + ",");
+                sysMetaData.append("CPU: ").append(cpu.name).append(",");
                 //System.out.println("Found CPU component: " + cpu.name);
                 if (cpu.sensors != null) {
                     //Print temperatures
                     java.util.List<Temperature> temps = cpu.sensors.temperatures;
                     for (final Temperature temp : temps) {
-                        sysMetaData.append(temp.name + ": " + temp.value+"°C,");
+                        sysMetaData.append(temp.name).append(": ").append(temp.value).append("°C,");
                         //System.out.println(temp.name + ": " + temp.value + " C");
                     }
                     sysMetaData.deleteCharAt(sysMetaData.length()-1);
