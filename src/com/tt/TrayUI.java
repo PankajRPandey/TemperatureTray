@@ -22,6 +22,8 @@ public class TrayUI {
     public static void main(String[] args) {
         String[] geoAPIKeyValue = APIUtils.getKeysFromAPIResponse("https://freegeoip.app/json/", "city");
         //System.out.println(APIUtils.getIPAddress());
+        String[] weatherAPIKeyValue = {"8.0", "21.66", "24.77", "20.44", "50d"};//APIUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
+
         EventQueue.invokeLater(() -> {
 
             try {
@@ -64,6 +66,11 @@ public class TrayUI {
                 @Override
                 protected void paintComponent(Graphics g) {
                     super.paintComponent(g);
+                    String[] colors = getPanelColorAccordingToTemperature(weatherAPIKeyValue[0]).split(",");
+                    float r = Float.parseFloat(colors[0]);
+                    float ge = Float.parseFloat(colors[1]);
+                    float b = Float.parseFloat(colors[2]);
+                    float a = Float.parseFloat(colors[3]);
                     Dimension arcs = new Dimension(15, 15);
                     int width = getWidth();
                     int height = getHeight();
@@ -71,7 +78,7 @@ public class TrayUI {
                     graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
                     //Draws the rounded opaque panel
-                    graphics.setColor(new Color(0.0f, 0.0f, 0.0f, 0.80f));
+                    graphics.setColor(new Color(r, ge, b, a));
                     graphics.fillRoundRect(0, 0, width - 1, height - 1, arcs.width, arcs.height);//paint background
                 }
             };
@@ -104,8 +111,7 @@ public class TrayUI {
                     if (e.getButton() == MouseEvent.BUTTON1) {
 
                         //{"20.55", "21.66", "24.77", "20.44", "50d"};
-                        String[] weatherAPIKeyValue = {"20.55", "21.66", "24.77", "20.44", "50d"}; //APIUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
-
+                        //String[] weatherAPIKeyValue = {"20.55", "21.66", "24.77", "20.44", "50d"};//APIUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
                         if (jWindow == null) {
                             jWindow = new JFrame();
                             c[0] = jWindow.getContentPane();//NEW
@@ -113,7 +119,7 @@ public class TrayUI {
 
                             c[0].add("A", mainPanel);
                             c[0].add("B", sysPanel);//NEW
-                            mainPanel.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.0f));
+                            mainPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
                             sysPanel.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.0f));
                         }
 
@@ -244,8 +250,8 @@ public class TrayUI {
                     for (final Temperature temp : temps) {
                         sysMetaData.append(temp.name).append(": ").append(temp.value).append("°C,");
                     }
-                    sysMetaData.deleteCharAt(sysMetaData.length()-1);
-                    if(cpuCount!=cpus.size()){
+                    sysMetaData.deleteCharAt(sysMetaData.length() - 1);
+                    if (cpuCount != cpus.size()) {
                         sysMetaData.append("|");
                     }
                 }
@@ -254,6 +260,21 @@ public class TrayUI {
 
         System.out.println(sysMetaData);
         return sysMetaData.toString();
+    }
+
+    private static String getPanelColorAccordingToTemperature(String temp) {
+        float floatTemp = Float.parseFloat(temp.trim());
+        if (floatTemp <= 22 && floatTemp >= 10) { //cold
+            return "0.0f,0.0f,1.0f,0.8f";
+        } else if (floatTemp > 22 && floatTemp <=30) { // slight hot
+            return "1.0f,0.6f,0.0f,0.8f";
+        } else if (floatTemp >= 40 && floatTemp <= 50) {// more hot
+            return "1.0f,0.2f,0.0f,0.8f";
+        } else if (floatTemp < 10) { //very cold
+            return "0.0f,0.0f,0.8f,0.8f";
+        } else { //very hot
+            return "1.0f,0.0f,0.0f,0.8f";
+        }
     }
 
 }
