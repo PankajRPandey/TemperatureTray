@@ -94,7 +94,7 @@ public class TrayUI {
             };
             CardLayout card = new CardLayout();
             final Container[] c = new Container[1];
-            final String[] metaData = {getDeviceTemperature()};
+            //final String[] metaData = {getDeviceTemperature()};
 
 
             MouseAdapter mouseAdapter = new MouseAdapter() {
@@ -159,11 +159,17 @@ public class TrayUI {
                         sysPnlPageStartLbl.setHorizontalAlignment(SwingConstants.CENTER);
                         sysPanel.add(sysPnlPageStartLbl, BorderLayout.PAGE_START);
 
-                        metaData[0] = metaData[0].replaceAll(",", "<br/>");
-                        System.out.println(metaData[0]);
-
-
-                        sysPnlCenterLbl.setText("<html><body style='color:white;font-size:15px;font-weight:bold;'>"+ metaData[0] +"</body></html>");
+                        new SwingWorker<Void, Void>() {
+                            @Override
+                            protected Void doInBackground() {
+                                while (true) {
+                                    String metaData = getDeviceTemperature();
+                                    metaData = metaData.replaceAll(",", "<br/>");
+                                    System.out.println(metaData);
+                                    sysPnlCenterLbl.setText("<html><span style='color:white;font-size:15px;font-weight:bold;'>" + metaData + "</span></html>");
+                                }
+                            }
+                        }.execute();
                         sysPnlCenterLbl.setHorizontalAlignment(SwingConstants.CENTER);
                         sysPanel.add(sysPnlCenterLbl, BorderLayout.CENTER);
 
