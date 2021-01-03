@@ -165,15 +165,12 @@ public class TrayUI {
                                 while (true) {
                                     String metaData = getDeviceTemperature();
                                     metaData = metaData.replaceAll(",", "<br/>");
-                                    System.out.println(metaData);
                                     sysPnlCenterLbl.setText("<html><span style='color:white;font-size:15px;font-weight:bold;'>" + metaData + "</span></html>");
                                 }
                             }
                         }.execute();
                         sysPnlCenterLbl.setHorizontalAlignment(SwingConstants.CENTER);
                         sysPanel.add(sysPnlCenterLbl, BorderLayout.CENTER);
-
-                        System.out.println(sysPnlCenterLbl.getText());
 
                         jWindow.setSize(300, 200);
                         Point point1 = e.getPoint(); //system tray icon click x,y/co-ords
@@ -195,13 +192,12 @@ public class TrayUI {
                             //test this on Mac
                             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
                             jWindow.setLocation(point1.x, screenSize.height - windowSize.height /*windowSize.width - 200 + 6, 6*/);
-                            System.out.println(point1.x + " " + (screenSize.height - windowSize.height));
+                            //System.out.println(point1.x + " " + (screenSize.height - windowSize.height));
                         }
 
                         jWindow.setType(Window.Type.UTILITY);
                         jWindow.setAlwaysOnTop(true);
                         jWindow.setUndecorated(true);
-                        //jWindow.setShape(new RoundRectangle2D.Double(0, 0, 300, 200, 20, 20));
                         jWindow.setOpacity(0.90f);
                         jWindow.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.0f));
                         jWindow.setVisible(true);
@@ -242,13 +238,11 @@ public class TrayUI {
             for (final Cpu cpu : cpus) {
                 cpuCount++;
                 sysMetaData.append("CPU: ").append(cpu.name).append(",");
-                //System.out.println("Found CPU component: " + cpu.name);
                 if (cpu.sensors != null) {
                     //Print temperatures
                     java.util.List<Temperature> temps = cpu.sensors.temperatures;
                     for (final Temperature temp : temps) {
                         sysMetaData.append(temp.name).append(": ").append(temp.value).append("°C,");
-                        //System.out.println(temp.name + ": " + temp.value + " C");
                     }
                     sysMetaData.deleteCharAt(sysMetaData.length()-1);
                     if(cpuCount!=cpus.size()){
