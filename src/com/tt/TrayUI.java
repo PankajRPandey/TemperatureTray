@@ -22,7 +22,7 @@ public class TrayUI {
     public static void main(String[] args) {
         String[] geoAPIKeyValue = APIUtils.getKeysFromAPIResponse("https://freegeoip.app/json/", "city");
         //System.out.println(APIUtils.getIPAddress());
-        String[] weatherAPIKeyValue = {"8.0", "21.66", "24.77", "20.44", "50d"};//APIUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
+        String[] weatherAPIKeyValue = {"35.0", "21.66", "24.77", "20.44", "50d"};//APIUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
 
         EventQueue.invokeLater(() -> {
 
@@ -84,21 +84,8 @@ public class TrayUI {
             };
 
 
-            JPanel sysPanel = new JPanel(new BorderLayout()) {
-                @Override
-                protected void paintComponent(Graphics g) {
-                    super.paintComponent(g);
-                    Dimension arcs = new Dimension(15, 15);
-                    int width = getWidth();
-                    int height = getHeight();
-                    Graphics2D graphics = (Graphics2D) g;
-                    graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            JPanel sysPanel = new TemperatureJPanel(new BorderLayout());
 
-                    //Draws the rounded opaque panel
-                    graphics.setColor(new Color(0.0f, 0.0f, 0.0f, 0.80f));
-                    graphics.fillRoundRect(0, 0, width - 1, height - 1, arcs.width, arcs.height);//paint background
-                }
-            };
             CardLayout card = new CardLayout();
             final Container[] c = new Container[1];
             //final String[] metaData = {getDeviceTemperature()};
