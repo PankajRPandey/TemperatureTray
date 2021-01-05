@@ -21,14 +21,4 @@ public class TemperatureJPanel extends JPanel {
         graphics.setColor(new Color(0.0f, 0.0f, 0.0f, 0.80f));
         graphics.fillRoundRect(0, 0, width - 1, height - 1, arcs.width, arcs.height);//paint background
     }
-
-    @Override
-    public void setForeground(Color fg) {
-        super.setForeground(fg);
-    }
-
-    @Override
-    public void setBackground(Color bg) {
-        super.setBackground(bg);
-    }
 }
