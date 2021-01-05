@@ -66,11 +66,7 @@ public class TrayUI {
                 @Override
                 protected void paintComponent(Graphics g) {
                     super.paintComponent(g);
-                    String[] colors = getPanelColorAccordingToTemperature(weatherAPIKeyValue[0]).split(",");
-                    float r = Float.parseFloat(colors[0]);
-                    float ge = Float.parseFloat(colors[1]);
-                    float b = Float.parseFloat(colors[2]);
-                    float a = Float.parseFloat(colors[3]);
+                    Color temperatureColor = getPanelColorAccordingToTemperature(weatherAPIKeyValue[0]);
                     Dimension arcs = new Dimension(15, 15);
                     int width = getWidth();
                     int height = getHeight();
@@ -78,7 +74,7 @@ public class TrayUI {
                     graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
                     //Draws the rounded opaque panel
-                    graphics.setColor(new Color(r, ge, b, a));
+                    graphics.setColor(temperatureColor);
                     graphics.fillRoundRect(0, 0, width - 1, height - 1, arcs.width, arcs.height);//paint background
                 }
             };
@@ -249,18 +245,19 @@ public class TrayUI {
         return sysMetaData.toString();
     }
 
-    private static String getPanelColorAccordingToTemperature(String temp) {
+    private static Color getPanelColorAccordingToTemperature(String temp) {
+        //use enum instead of new color objects
         float floatTemp = Float.parseFloat(temp.trim());
         if (floatTemp <= 22 && floatTemp >= 10) { //cold
-            return "0.0f,0.0f,1.0f,0.8f";
+            return new Color(0.0f,0.0f,1.0f,0.8f);
         } else if (floatTemp > 22 && floatTemp <=30) { // slight hot
-            return "1.0f,0.6f,0.0f,0.8f";
+            return new Color(1.0f,0.6f,0.0f,0.8f);
         } else if (floatTemp >= 40 && floatTemp <= 50) {// more hot
-            return "1.0f,0.2f,0.0f,0.8f";
+            return new Color(1.0f,0.2f,0.0f,0.8f);
         } else if (floatTemp < 10) { //very cold
-            return "0.0f,0.0f,0.8f,0.8f";
+            return new Color(0.0f,0.0f,0.8f,0.8f);
         } else { //very hot
-            return "1.0f,0.0f,0.0f,0.8f";
+            return new Color(1.0f,0.0f,0.0f,0.8f);
         }
     }
 
