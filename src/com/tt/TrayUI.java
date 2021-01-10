@@ -81,7 +81,7 @@ public class TrayUI {
             };
 
 
-            TemperatureJPanel sysPanel = new TemperatureJPanel(new BorderLayout());
+            TTJPanel sysPanel = new TTJPanel(new BorderLayout());
 
             CardLayout card = new CardLayout();
             final Container[] c = new Container[1];

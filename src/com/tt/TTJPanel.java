@@ -3,8 +3,8 @@ package com.tt;
 import javax.swing.*;
 import java.awt.*;
 
-public class TemperatureJPanel extends JPanel {
-    public TemperatureJPanel(LayoutManager layout) {
+public class TTJPanel extends JPanel {
+    public TTJPanel(LayoutManager layout) {
         super(layout);
     }
 
