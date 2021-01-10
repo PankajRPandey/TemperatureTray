@@ -20,7 +20,7 @@ import java.util.Objects;
 
 public class TrayUI {
     public static void main(String[] args) {
-        String[] geoAPIKeyValue = APIUtils.getKeysFromAPIResponse("https://freegeoip.app/json/", "city");
+        String[] geoAPIKeyValue = TTUtils.getKeysFromAPIResponse("https://freegeoip.app/json/", "city");
         //System.out.println(APIUtils.getIPAddress());
         //String[] weatherAPIKeyValue = {"35.0", "21.66", "24.77", "20.44", "50d"};//APIUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
 
@@ -95,7 +95,7 @@ public class TrayUI {
                     if (e.getButton() == MouseEvent.BUTTON1) {
 
                         //{"20.55", "21.66", "24.77", "20.44", "50d"};
-                        String[] weatherAPIKeyValue = {"20.55", "21.66", "24.77", "20.44", "50d"};//APIUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
+                        String[] weatherAPIKeyValue = {"20.55", "21.66", "24.77", "20.44", "50d"};//TTUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
                         if (jWindow == null) {
                             jWindow = new JFrame();
                             c[0] = jWindow.getContentPane();//NEW

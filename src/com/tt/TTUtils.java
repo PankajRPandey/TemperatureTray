@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class APIUtils {
+public class TTUtils {
     private static JSONObject jsonObject;
 
     public static String[] getKeysFromAPIResponse(String apiURL, String... responseKey) {
