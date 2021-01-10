@@ -18,7 +18,7 @@ import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Objects;
 
-public class TrayUI {
+public class TTMainUI {
     public static void main(String[] args) {
         String[] geoAPIKeyValue = TTUtils.getKeysFromAPIResponse("https://freegeoip.app/json/", "city");
         //System.out.println(APIUtils.getIPAddress());
@@ -40,7 +40,7 @@ public class TrayUI {
             SystemTray tray = SystemTray.getSystemTray();
             Image image = null;
             try {
-                image = ImageIO.read(Objects.requireNonNull(TrayUI.class.getClassLoader().getResourceAsStream("resources/tt.png")));
+                image = ImageIO.read(Objects.requireNonNull(TTMainUI.class.getClassLoader().getResourceAsStream("resources/tt.png")));
             } catch (IOException e) {
                 e.printStackTrace();
             }
