@@ -22,7 +22,7 @@ public class TrayUI {
     public static void main(String[] args) {
         String[] geoAPIKeyValue = APIUtils.getKeysFromAPIResponse("https://freegeoip.app/json/", "city");
         //System.out.println(APIUtils.getIPAddress());
-        String[] weatherAPIKeyValue = {"35.0", "21.66", "24.77", "20.44", "50d"};//APIUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
+        //String[] weatherAPIKeyValue = {"35.0", "21.66", "24.77", "20.44", "50d"};//APIUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
 
         EventQueue.invokeLater(() -> {
 
@@ -66,7 +66,8 @@ public class TrayUI {
                 @Override
                 protected void paintComponent(Graphics g) {
                     super.paintComponent(g);
-                    Color temperatureColor = getPanelColorAccordingToTemperature(weatherAPIKeyValue[0]);
+                    //Color temperatureColor = getPanelColorAccordingToTemperature(weatherAPIKeyValue[0]);
+                    Color temperatureColor = new Color(0.0f, 0.0f, 0.0f, 0.80f);
                     Dimension arcs = new Dimension(15, 15);
                     int width = getWidth();
                     int height = getHeight();
@@ -94,7 +95,7 @@ public class TrayUI {
                     if (e.getButton() == MouseEvent.BUTTON1) {
 
                         //{"20.55", "21.66", "24.77", "20.44", "50d"};
-                        //String[] weatherAPIKeyValue = {"20.55", "21.66", "24.77", "20.44", "50d"};//APIUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
+                        String[] weatherAPIKeyValue = {"20.55", "21.66", "24.77", "20.44", "50d"};//APIUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
                         if (jWindow == null) {
                             jWindow = new JFrame();
                             c[0] = jWindow.getContentPane();//NEW
@@ -130,7 +131,7 @@ public class TrayUI {
                         }
 
                         centerLabel.setIcon(i);
-                        centerLabel.setText("<html><center><span style='color:white;font-size:55px;'>" + weatherAPIKeyValue[0] + "°C" + "</span></center></html>");
+                        centerLabel.setText("<html><center><span style='color:white;font-size:55px;'>" + (int)Math.ceil(Float.parseFloat(weatherAPIKeyValue[0])) + "°C" + "</span></center></html>");
                         mainPanel.add(centerLabel, BorderLayout.CENTER);
 
 
@@ -139,7 +140,7 @@ public class TrayUI {
                         mainPanel.add(pageStartLabel, BorderLayout.PAGE_START);
 
 
-                        pageEndLabel.setText("<html><center><span style='color:white;font-size:15px;'><i>Feels like " + weatherAPIKeyValue[1] + "°C</i></span><br/><span style='color:white;font-size:10px;font-weight:bold;'>HIGH " + weatherAPIKeyValue[2] + "°C &nbsp;&nbsp; | &nbsp;&nbsp; LOW " + weatherAPIKeyValue[3] + "°C</span></center></html>");
+                        pageEndLabel.setText("<html><center><span style='color:white;font-size:15px;'><i>Feels like " + (int)Math.ceil(Float.parseFloat(weatherAPIKeyValue[1])) + "°C</i></span><br/><span style='color:white;font-size:10px;font-weight:bold;'>HIGH " + (int)Math.ceil(Float.parseFloat(weatherAPIKeyValue[2])) + "°C &nbsp;&nbsp; | &nbsp;&nbsp; LOW " + (int)Math.ceil(Float.parseFloat(weatherAPIKeyValue[3])) + "°C</span></center></html>");
                         pageEndLabel.setHorizontalAlignment(SwingConstants.CENTER);
                         //pageEndLabel.setVerticalTextPosition(JLabel.TOP);
                         mainPanel.add(pageEndLabel, BorderLayout.PAGE_END);
