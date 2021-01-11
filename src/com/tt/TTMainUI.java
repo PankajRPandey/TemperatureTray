@@ -18,6 +18,8 @@ import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Objects;
 
+import static com.tt.TTUtils.*;
+
 public class TTMainUI {
     public static void main(String[] args) {
         String[] geoAPIKeyValue = TTUtils.getKeysFromAPIResponse("https://freegeoip.app/json/", "city");
@@ -217,33 +219,6 @@ public class TTMainUI {
             }
         });
 
-    }
-
-    public static String getDeviceTemperature() {
-        Components components = JSensors.get.components();
-        java.util.List<Cpu> cpus = components.cpus;
-        StringBuilder sysMetaData = new StringBuilder();
-        if (cpus != null) {
-            int cpuCount = 0;
-            for (final Cpu cpu : cpus) {
-                cpuCount++;
-                sysMetaData.append("CPU: ").append(cpu.name).append(",");
-                if (cpu.sensors != null) {
-                    //Print temperatures
-                    java.util.List<Temperature> temps = cpu.sensors.temperatures;
-                    for (final Temperature temp : temps) {
-                        sysMetaData.append(temp.name).append(": ").append(temp.value).append("°C,");
-                    }
-                    sysMetaData.deleteCharAt(sysMetaData.length() - 1);
-                    if (cpuCount != cpus.size()) {
-                        sysMetaData.append("|");
-                    }
-                }
-            }
-        }
-
-        System.out.println(sysMetaData);
-        return sysMetaData.toString();
     }
 
     private static Color getPanelColorAccordingToTemperature(String temp) {
