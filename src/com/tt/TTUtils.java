@@ -7,12 +7,12 @@ import com.profesorfalken.jsensors.model.sensors.Temperature;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -46,10 +46,6 @@ public class TTUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        String response="";
-//        for (String key: responseKey) {
-//            response = response + " " + jsonObject.getString(key);
-//        }
         return getAnyKeyValueAsString(jsonObject, responseKey);
     }
 
@@ -137,6 +133,22 @@ public class TTUtils {
 
         System.out.println(sysMetaData);
         return sysMetaData.toString();
+    }
+
+    protected static Color getPanelColorAccordingToTemperature(String temp) {
+        //use enum instead of new color objects
+        float floatTemp = Float.parseFloat(temp.trim());
+        if (floatTemp <= 22 && floatTemp >= 10) { //cold
+            return new Color(0.0f,0.0f,1.0f,0.8f);
+        } else if (floatTemp > 22 && floatTemp <=30) { // slight hot
+            return new Color(1.0f,0.6f,0.0f,0.8f);
+        } else if (floatTemp >= 40 && floatTemp <= 50) {// more hot
+            return new Color(1.0f,0.2f,0.0f,0.8f);
+        } else if (floatTemp < 10) { //very cold
+            return new Color(0.0f,0.0f,0.8f,0.8f);
+        } else { //very hot
+            return new Color(1.0f,0.0f,0.0f,0.8f);
+        }
     }
 
 
