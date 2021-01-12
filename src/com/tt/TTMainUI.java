@@ -97,12 +97,12 @@ public class TTMainUI {
             TTJPanel sysPanel = new TTJPanel(new BorderLayout());
 
             CardLayout card = new CardLayout();
-            final Container[] c = new Container[1];
             //final String[] metaData = {getDeviceTemperature()};
 
 
             MouseAdapter mouseAdapter = new MouseAdapter() {
                 JFrame jWindow = null;
+                 Container c = new Container();
 
                 public void mouseClicked(MouseEvent e) {
                     if (e.getButton() == MouseEvent.BUTTON1) {
@@ -111,11 +111,11 @@ public class TTMainUI {
                         String[] weatherAPIKeyValue = {"20.55", "21.66", "24.77", "20.44", "50d"};//TTUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
                         if (jWindow == null) {
                             jWindow = new JFrame();
-                            c[0] = jWindow.getContentPane();//NEW
-                            c[0].setLayout(card);//NEW
+                            c = jWindow.getContentPane();//NEW
+                            c.setLayout(card);//NEW
 
-                            c[0].add("A", mainPanel);
-                            c[0].add("B", sysPanel);//NEW
+                            c.add("A", mainPanel);
+                            c.add("B", sysPanel);//NEW
                             mainPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
                             //sysPanel.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.0f));
                         }
@@ -125,7 +125,7 @@ public class TTMainUI {
                             @Override
                             public void mouseClicked(MouseEvent e) {
                                 super.mouseClicked(e);
-                                card.next(c[0]);
+                                card.next(c);
                             }
                         });
 
