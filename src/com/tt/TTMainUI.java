@@ -64,6 +64,17 @@ public class TTMainUI {
             JLabel sysPnlCenterLbl = new JLabel();
             JLabel sysPnlPageStartLbl = new JLabel();
 
+            new SwingWorker<Void, Void>() {
+                @Override
+                protected Void doInBackground() {
+                    while (true) {
+                        String metaData = getDeviceTemperature();
+                        metaData = metaData.replaceAll(",", "<br/>");
+                        sysPnlCenterLbl.setText("<html><span style='color:white;font-size:15px;font-weight:bold;'>" + metaData + "</span></html>");
+                    }
+                }
+            }.execute();
+
             JPanel mainPanel = new JPanel(new BorderLayout()) {
                 @Override
                 protected void paintComponent(Graphics g) {
@@ -106,7 +117,7 @@ public class TTMainUI {
                             c[0].add("A", mainPanel);
                             c[0].add("B", sysPanel);//NEW
                             mainPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
-                            sysPanel.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.0f));
+                            //sysPanel.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.0f));
                         }
 
 
@@ -151,16 +162,6 @@ public class TTMainUI {
                         sysPnlPageStartLbl.setHorizontalAlignment(SwingConstants.CENTER);
                         sysPanel.add(sysPnlPageStartLbl, BorderLayout.PAGE_START);
 
-                        new SwingWorker<Void, Void>() {
-                            @Override
-                            protected Void doInBackground() {
-                                while (true) {
-                                    String metaData = getDeviceTemperature();
-                                    metaData = metaData.replaceAll(",", "<br/>");
-                                    sysPnlCenterLbl.setText("<html><span style='color:white;font-size:15px;font-weight:bold;'>" + metaData + "</span></html>");
-                                }
-                            }
-                        }.execute();
                         sysPnlCenterLbl.setHorizontalAlignment(SwingConstants.CENTER);
                         sysPanel.add(sysPnlCenterLbl, BorderLayout.CENTER);
 
@@ -202,6 +203,7 @@ public class TTMainUI {
                             @Override
                             public void windowLostFocus(WindowEvent e) {
                                 mainPanel.revalidate();
+                                sysPanel.revalidate();
                                 jWindow.dispose();
                             }
                         });
@@ -219,22 +221,6 @@ public class TTMainUI {
             }
         });
 
-    }
-
-    private static Color getPanelColorAccordingToTemperature(String temp) {
-        //use enum instead of new color objects
-        float floatTemp = Float.parseFloat(temp.trim());
-        if (floatTemp <= 22 && floatTemp >= 10) { //cold
-            return new Color(0.0f,0.0f,1.0f,0.8f);
-        } else if (floatTemp > 22 && floatTemp <=30) { // slight hot
-            return new Color(1.0f,0.6f,0.0f,0.8f);
-        } else if (floatTemp >= 40 && floatTemp <= 50) {// more hot
-            return new Color(1.0f,0.2f,0.0f,0.8f);
-        } else if (floatTemp < 10) { //very cold
-            return new Color(0.0f,0.0f,0.8f,0.8f);
-        } else { //very hot
-            return new Color(1.0f,0.0f,0.0f,0.8f);
-        }
     }
 
 }
