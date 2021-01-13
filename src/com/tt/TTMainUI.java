@@ -69,6 +69,10 @@ public class TTMainUI {
                 protected Void doInBackground() {
                     while (true) {
                         String metaData = getDeviceTemperature();
+                        String[] sysTemperatureValues;
+                        sysTemperatureValues = metaData.split(",");
+                        sysPnlPageStartLbl.setText("<html><center><span style='color:white;font-size:18px;'><b>Device Temp</b></span><br/><hr/><span style='color:white;font-size:10px;'><b>"+sysTemperatureValues[0]+"</b></span></center></html>");
+                        //ysPnlCenterLbl.setText("<html><head><style>.row {display: flex;}.column {flex: 50%;}</style></head><body><div class='row'><div class='column'><h2>Column 1</h2><p>Some text..</p><div class='column'><h2>Column 2</h2><p>Some text..</p></div>\n</body></html>");
                         metaData = metaData.replaceAll(",", "<br/>");
                         sysPnlCenterLbl.setText("<html><span style='color:white;font-size:15px;font-weight:bold;'>" + metaData + "</span></html>");
                     }
@@ -158,7 +162,7 @@ public class TTMainUI {
                         //pageEndLabel.setVerticalTextPosition(JLabel.TOP);
                         mainPanel.add(pageEndLabel, BorderLayout.PAGE_END);
 
-                        sysPnlPageStartLbl.setText("<html><center><span style='color:white;font-size:18px;'><b>System Temperature</b></span><br/><hr/></center></html>");
+                        //sysPnlPageStartLbl.setText("<html><center><span style='color:white;font-size:18px;'><b>System Temperature</b></span><br/><hr/></center></html>");
                         sysPnlPageStartLbl.setHorizontalAlignment(SwingConstants.CENTER);
                         sysPanel.add(sysPnlPageStartLbl, BorderLayout.PAGE_START);
 
