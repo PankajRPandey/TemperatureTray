@@ -11,15 +11,23 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class TTMain {
+
     private JFrame jWindow = null;
     private Container c = new Container();
+    private JLabel centerLabel = new JLabel();
+    private JLabel pageStartLabel = new JLabel();
+    private JLabel pageEndLabel = new JLabel();
+    private JLabel sysPnlCenterLbl = new JLabel();
+    private JLabel sysPnlPageStartLbl = new JLabel();
+    private TTJPanel sysPanel = new TTJPanel(new BorderLayout());
+    private TTJPanel mainPanel = new TTJPanel(new BorderLayout());
+    private CardLayout card = new CardLayout();
 
     public static void main(String[] args) {
         TTMain app = new TTMain();
     }
 
     public TTMain() {
-
 
         TTMain _this = this;
 
@@ -60,6 +68,21 @@ public class TTMain {
             }
         });
 
+
+        c = jWindow.getContentPane();
+        c.setLayout(card);
+        c.add("A", mainPanel);
+        c.add("B", sysPanel);
+        mainPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
+
+
+        jWindow.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                card.next(c);
+            }
+        });
 
     }
 
