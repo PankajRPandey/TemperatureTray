@@ -14,10 +14,10 @@ public class TTMain {
 
     private JFrame jWindow = null;
     private Container c = new Container();
-    private JLabel centerLabel = new JLabel();
+    private JLabel centerLabel = new JLabel("Side A");
     private JLabel pageStartLabel = new JLabel();
     private JLabel pageEndLabel = new JLabel();
-    private JLabel sysPnlCenterLbl = new JLabel();
+    private JLabel sysPnlCenterLbl = new JLabel("Side B");
     private JLabel sysPnlPageStartLbl = new JLabel();
     private TTJPanel sysPanel = new TTJPanel(new BorderLayout());
     private TTJPanel mainPanel = new TTJPanel(new BorderLayout());
@@ -51,8 +51,8 @@ public class TTMain {
         jWindow.setType(Window.Type.UTILITY);
         jWindow.setAlwaysOnTop(true);
         jWindow.setUndecorated(true);
-        //jWindow.setOpacity(0.90f);
-        //jWindow.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.0f));
+        jWindow.setOpacity(0.90f);
+        jWindow.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.0f));
         jWindow.setVisible(true);
         jWindow.setFocusable(true);
         jWindow.addWindowFocusListener(new WindowFocusListener() {
@@ -74,6 +74,7 @@ public class TTMain {
         c.add("A", mainPanel);
         c.add("B", sysPanel);
         mainPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
+        sysPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
 
 
         jWindow.addMouseListener(new MouseAdapter() {
