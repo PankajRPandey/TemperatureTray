@@ -61,19 +61,6 @@ public class TTMain {
         jWindow.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.0f));
         jWindow.setVisible(true);
         jWindow.setFocusable(true);
-        jWindow.addWindowFocusListener(new WindowFocusListener() {
-            @Override
-            public void windowGainedFocus(WindowEvent e) {
-            }
-
-            @Override
-            public void windowLostFocus(WindowEvent e) {
-                //mainPanel.revalidate();
-                //sysPanel.revalidate();
-                //jWindow.dispose();
-            }
-        });
-
 
         c = jWindow.getContentPane();
         c.setLayout(card);
@@ -105,7 +92,6 @@ public class TTMain {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
 
-
                 if (e.getButton() == MouseEvent.BUTTON1) {
 
                     String[] weatherAPIKeyValue = {"20.55", "21.66", "24.77", "20.44", "50d"};//TTUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
@@ -127,7 +113,6 @@ public class TTMain {
                         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
                         jWindow.setLocation(point1.x, screenSize.height - windowSize.height);
                     }
-
 
 
                     URL url;
@@ -164,7 +149,18 @@ public class TTMain {
                     sysPnlCenterLbl.setHorizontalAlignment(SwingConstants.CENTER);
                     sysPanel.add(sysPnlCenterLbl, BorderLayout.CENTER);
 
+                    jWindow.addWindowFocusListener(new WindowFocusListener() {
+                        @Override
+                        public void windowGainedFocus(WindowEvent e) {
+                        }
 
+                        @Override
+                        public void windowLostFocus(WindowEvent e) {
+                            mainPanel.revalidate();
+                            sysPanel.revalidate();
+                            jWindow.dispose();
+                        }
+                    });
 
                 }
 
