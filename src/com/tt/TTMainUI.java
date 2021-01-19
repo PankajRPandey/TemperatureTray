@@ -1,10 +1,5 @@
 package com.tt;
 
-import com.profesorfalken.jsensors.JSensors;
-import com.profesorfalken.jsensors.model.components.Components;
-import com.profesorfalken.jsensors.model.components.Cpu;
-import com.profesorfalken.jsensors.model.sensors.Temperature;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +13,7 @@ import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Objects;
 
-import static com.tt.TTUtils.*;
+import static com.tt.TTUtils.getDeviceTemperature;
 
 public class TTMainUI {
     public static void main(String[] args) {
