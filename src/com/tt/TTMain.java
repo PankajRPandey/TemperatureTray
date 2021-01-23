@@ -30,7 +30,7 @@ public class TTMain {
     MouseAdapter mouseAdapter;
 
     public static void main(String[] args) {
-        TTMain app = new TTMain();
+        new TTMain();
     }
 
     public TTMain() {
