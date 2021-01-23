@@ -93,6 +93,7 @@ public class TTMain {
                 super.mouseClicked(e);
 
                 if (e.getButton() == MouseEvent.BUTTON1) {
+                    jWindow.setVisible(true);
 
                     String[] weatherAPIKeyValue = {"20.55", "21.66", "24.77", "20.44", "50d"};//TTUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
 
@@ -149,18 +150,21 @@ public class TTMain {
                     sysPnlCenterLbl.setHorizontalAlignment(SwingConstants.CENTER);
                     sysPanel.add(sysPnlCenterLbl, BorderLayout.CENTER);
 
-                    jWindow.addWindowFocusListener(new WindowFocusListener() {
-                        @Override
-                        public void windowGainedFocus(WindowEvent e) {
-                        }
+                        jWindow.addWindowFocusListener(new WindowFocusListener() {
+                            @Override
+                            public void windowGainedFocus(WindowEvent e) {
+                            }
 
-                        @Override
-                        public void windowLostFocus(WindowEvent e) {
-                            mainPanel.revalidate();
-                            sysPanel.revalidate();
-                            jWindow.dispose();
-                        }
-                    });
+                            @Override
+                            public void windowLostFocus(WindowEvent e) {
+                                    mainPanel.revalidate();
+                                    sysPanel.revalidate();
+                                    //jWindow.dispose();
+                                jWindow.setVisible(false);
+                            }
+                        });
+
+
 
                 }
 
