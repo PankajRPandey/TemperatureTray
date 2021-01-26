@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 import static com.tt.TTUtils.*;
 
@@ -94,7 +95,7 @@ public class TTMain {
 
                 if (e.getButton() == MouseEvent.BUTTON1) {
                     jWindow.setVisible(true);
-
+                    //{"20.55", "21.66", "24.77", "20.44", "50d"};//
                     String[] weatherAPIKeyValue = {"20.55", "21.66", "24.77", "20.44", "50d"};//TTUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
 
 
@@ -133,8 +134,13 @@ public class TTMain {
                     centerLabel.setText("<html><center><span style='color:white;font-size:55px;'>" + (int)Math.ceil(Float.parseFloat(weatherAPIKeyValue[0])) + "°C" + "</span></center></html>");
                     mainPanel.add(centerLabel, BorderLayout.CENTER);
 
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(calendar.get(Calendar.YEAR),
+                            calendar.get(Calendar.MONTH) + 1,
+                            calendar.get(Calendar.DAY_OF_MONTH));
+                    int weekOfMonth = calendar.get(Calendar.WEEK_OF_MONTH);
 
-                    pageStartLabel.setText("<html><center><span style='color:white;font-size:18px;'><b>" + geoAPIKeyValue[0] + "</b></span><br/><hr/><span style='color:white;font-size:10px;'><b>" + LocalDate.now().getDayOfWeek() + " &nbsp;|&nbsp; WEEK OF THE MONTH: " + Calendar.getInstance().get(Calendar.WEEK_OF_MONTH) + "</b></span></center></html>");
+                    pageStartLabel.setText("<html><center><span style='color:white;font-size:18px;'><b>" + geoAPIKeyValue[0] + "</b></span><br/><hr/><span style='color:white;font-size:10px;'><b>" + weekOfMonth + " &nbsp;|&nbsp; WEEK OF THE MONTH: " + Calendar.getInstance().get(Calendar.WEEK_OF_MONTH) + "</b></span></center></html>");
                     pageStartLabel.setHorizontalAlignment(SwingConstants.CENTER);
                     mainPanel.add(pageStartLabel, BorderLayout.PAGE_START);
 
