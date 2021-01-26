@@ -10,6 +10,7 @@ import java.awt.event.WindowFocusListener;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
@@ -81,9 +82,12 @@ public class TTMain {
                     String[] sysTemperatureValues;
                     sysTemperatureValues = metaData.split(",");
                     sysPnlPageStartLbl.setText("<html><center><span style='color:white;font-size:18px;'><b>Device Temp</b></span><br/><hr/><span style='color:white;font-size:10px;'><b>"+sysTemperatureValues[0]+"</b></span></center></html>");
-                    //ysPnlCenterLbl.setText("<html><head><style>.row {display: flex;}.column {flex: 50%;}</style></head><body><div class='row'><div class='column'><h2>Column 1</h2><p>Some text..</p><div class='column'><h2>Column 2</h2><p>Some text..</p></div>\n</body></html>");
-                    metaData = metaData.replaceAll(",", "<br/>");
-                    sysPnlCenterLbl.setText("<html><span style='color:white;font-size:15px;font-weight:bold;'>" + metaData + "</span></html>");
+                    //centerLabel.setText("<html><center><span style='color:white;font-size:55px;'>" + (int)Math.ceil(Float.parseFloat(weatherAPIKeyValue[0])) + "°C" + "</span></center></html>");
+                    //metaData = metaData.replaceAll(",", "<br/>");
+                    String corePackage = sysTemperatureValues[sysTemperatureValues.length - 1];
+                    corePackage = corePackage.substring(corePackage.indexOf(":") + 2, corePackage.length() - 2);
+                    sysPnlCenterLbl.setText("<html><center><span style='color:white;font-size:55px;'>" +  (int)Math.ceil(Float.parseFloat(corePackage)) + "°C" + "</span></center></html>");
+                    //sysPnlCenterLbl.setText("<html><span style='color:white;font-size:15px;font-weight:bold;'>" + metaData + "</span></html>");
                 }
             }
         }.execute();
