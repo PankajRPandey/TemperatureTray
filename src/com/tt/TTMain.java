@@ -140,7 +140,7 @@ public class TTMain {
                             calendar.get(Calendar.DAY_OF_MONTH));
                     int weekOfMonth = calendar.get(Calendar.WEEK_OF_MONTH);
 
-                    pageStartLabel.setText("<html><center><span style='color:white;font-size:18px;'><b>" + geoAPIKeyValue[0] + "</b></span><br/><hr/><span style='color:white;font-size:10px;'><b>" + weekOfMonth + " &nbsp;|&nbsp; WEEK OF THE MONTH: " + Calendar.getInstance().get(Calendar.WEEK_OF_MONTH) + "</b></span></center></html>");
+                    pageStartLabel.setText("<html><center><span style='color:white;font-size:18px;'><b>" + geoAPIKeyValue[0] + "</b></span><br/><hr/><span style='color:white;font-size:10px;'><b>" + LocalDate.now().getDayOfWeek() + " &nbsp;|&nbsp; WEEK OF THE MONTH: " + weekOfMonth + "</b></span></center></html>");
                     pageStartLabel.setHorizontalAlignment(SwingConstants.CENTER);
                     mainPanel.add(pageStartLabel, BorderLayout.PAGE_START);
 
