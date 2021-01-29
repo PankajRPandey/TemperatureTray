@@ -69,7 +69,7 @@ public class TTMain {
         c.add("A", mainPanel);
         c.add("B", sysPanel);
         mainPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
-        //sysPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
+        sysPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
 
         String[] geoAPIKeyValue = TTUtils.getKeysFromAPIResponse("https://freegeoip.app/json/", "city");
         //System.out.println(APIUtils.getIPAddress());
