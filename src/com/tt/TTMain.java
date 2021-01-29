@@ -59,8 +59,8 @@ public class TTMain {
         jWindow.setType(Window.Type.UTILITY);
         jWindow.setAlwaysOnTop(true);
         jWindow.setUndecorated(true);
-        jWindow.setOpacity(0.90f);
-        jWindow.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.0f));
+        jWindow.setOpacity(0.80f);
+        //jWindow.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.50f));
         jWindow.setVisible(true);
         jWindow.setFocusable(true);
 
@@ -68,8 +68,8 @@ public class TTMain {
         c.setLayout(card);
         c.add("A", mainPanel);
         c.add("B", sysPanel);
-        mainPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
-        sysPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
+        //mainPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
+        //sysPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
 
         String[] geoAPIKeyValue = TTUtils.getKeysFromAPIResponse("https://freegeoip.app/json/", "city");
         //System.out.println(APIUtils.getIPAddress());
