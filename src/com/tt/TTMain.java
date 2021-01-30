@@ -7,6 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
+import java.awt.geom.Rectangle2D;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -29,6 +30,8 @@ public class TTMain {
     private JLabel sysPnlPageEndLbl= new JLabel();
     private TTJPanel sysPanel = new TTJPanel(new BorderLayout());
     private TTJPanel mainPanel = new TTJPanel(new BorderLayout());
+    //private RoundedPanel sysPanel = new RoundedPanel(new BorderLayout());
+    //private RoundedPanel mainPanel = new RoundedPanel(new BorderLayout());
     private CardLayout card = new CardLayout();
     MouseAdapter mouseAdapter;
 
@@ -39,6 +42,7 @@ public class TTMain {
     public TTMain() {
 
         TTMain _this = this;
+
 
         _this.createJFrame();
 
@@ -57,20 +61,21 @@ public class TTMain {
 
     public void createJFrame() {
         jWindow = new JFrame();
+        jWindow.setUndecorated(true);
         jWindow.setType(Window.Type.UTILITY);
         jWindow.setAlwaysOnTop(true);
-        jWindow.setUndecorated(true);
+        jWindow.setBackground(new Color(0.0f,0.0f,0.0f,0.0f));
         jWindow.setOpacity(0.80f);
-        //jWindow.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.50f));
         jWindow.setVisible(true);
         jWindow.setFocusable(true);
 
         c = jWindow.getContentPane();
+        //jWindow.getContentPane().setBackground(new Color(1.0f,1.0f,1.0f,1.0f));
         c.setLayout(card);
         c.add("A", mainPanel);
         c.add("B", sysPanel);
-        //mainPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
-        //sysPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
+        mainPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
+        sysPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
 
         String[] geoAPIKeyValue = TTUtils.getKeysFromAPIResponse("https://freegeoip.app/json/", "city");
         //System.out.println(APIUtils.getIPAddress());
