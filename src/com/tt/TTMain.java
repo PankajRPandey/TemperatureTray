@@ -80,16 +80,16 @@ public class TTMain {
             protected Void doInBackground() {
                 while (true) {
                     // "CPU: Intel Core i7-3517U,Temp CPU Core #1: 73.0°C,Temp CPU Core #2: 77.0°C,Temp CPU Core #3: 78.0°C,Temp CPU Core #4: 79.0°C,Temp CPU Package: 77.0°C"
-                    String metaData = "CPU: Intel Core i7-3517U,Temp CPU Core #1: 73.0°C,Temp CPU Core #2: 77.0°C,Temp CPU Core #3: 78.0°C,Temp CPU Core #4: 79.0°C,Temp CPU Package: 77.0°C"; //getDeviceTemperature();
+                    String metaData = getDeviceTemperature();
                     metaData = metaData.replace("Temp ","");
                     String[] sysTemperatureValues;
                     sysTemperatureValues = metaData.split(",");
-                    sysPnlPageStartLbl.setText("<html><center><span style='color:white;font-size:18px;'><b>Device Temp</b></span><br/><hr/><span style='color:white;font-size:10px;'><b>"+sysTemperatureValues[0].toUpperCase()+"</b></span></center></html>");
+                    sysPnlPageStartLbl.setText("<html><center><span style='color:white;font-size:18px;'><b>System Temperature</b></span><br/><hr/><span style='color:white;font-size:10px;'><b>"+sysTemperatureValues[0].toUpperCase()+"</b></span></center></html>");
                     String corePackage = sysTemperatureValues[sysTemperatureValues.length - 1];
                     String cores = "";
                     for (int i = 1; i < (sysTemperatureValues.length) - 1; i++) {
                         if(i%2 != 0){
-                            cores = cores + sysTemperatureValues[i] + "&nbsp;|&nbsp;";
+                            cores = cores + sysTemperatureValues[i] + "&nbsp;&nbsp;|&nbsp;&nbsp;";
                         }else if(i%2 == 0){
                             cores = cores + sysTemperatureValues[i] + "<br/>";
                         }

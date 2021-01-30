@@ -116,7 +116,7 @@ public class TTUtils {
             int cpuCount = 0;
             for (final Cpu cpu : cpus) {
                 cpuCount++;
-                sysMetaData.append("CPU: ").append(cpu.name).append(",");
+                sysMetaData.append("CPU COMPONENT: ").append(cpu.name).append(",");
                 if (cpu.sensors != null) {
                     //Print temperatures
                     java.util.List<Temperature> temps = cpu.sensors.temperatures;
