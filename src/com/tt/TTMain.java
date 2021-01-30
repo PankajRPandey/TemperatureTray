@@ -26,6 +26,7 @@ public class TTMain {
     private JLabel pageEndLabel = new JLabel();
     private JLabel sysPnlCenterLbl = new JLabel("<html><body style='color:white;'>Side B<body><html>");
     private JLabel sysPnlPageStartLbl = new JLabel();
+    private JLabel sysPnlPageEndLbl= new JLabel();
     private TTJPanel sysPanel = new TTJPanel(new BorderLayout());
     private TTJPanel mainPanel = new TTJPanel(new BorderLayout());
     private CardLayout card = new CardLayout();
@@ -78,16 +79,26 @@ public class TTMain {
             @Override
             protected Void doInBackground() {
                 while (true) {
-                    String metaData = getDeviceTemperature();
+                    // "CPU: Intel Core i7-3517U,Temp CPU Core #1: 73.0°C,Temp CPU Core #2: 77.0°C,Temp CPU Core #3: 78.0°C,Temp CPU Core #4: 79.0°C,Temp CPU Package: 77.0°C"
+                    String metaData = "CPU: Intel Core i7-3517U,Temp CPU Core #1: 73.0°C,Temp CPU Core #2: 77.0°C,Temp CPU Core #3: 78.0°C,Temp CPU Core #4: 79.0°C,Temp CPU Package: 77.0°C"; //getDeviceTemperature();
+                    metaData = metaData.replace("Temp ","");
                     String[] sysTemperatureValues;
                     sysTemperatureValues = metaData.split(",");
-                    sysPnlPageStartLbl.setText("<html><center><span style='color:white;font-size:18px;'><b>Device Temp</b></span><br/><hr/><span style='color:white;font-size:10px;'><b>"+sysTemperatureValues[0]+"</b></span></center></html>");
-                    //centerLabel.setText("<html><center><span style='color:white;font-size:55px;'>" + (int)Math.ceil(Float.parseFloat(weatherAPIKeyValue[0])) + "°C" + "</span></center></html>");
-                    //metaData = metaData.replaceAll(",", "<br/>");
+                    sysPnlPageStartLbl.setText("<html><center><span style='color:white;font-size:18px;'><b>Device Temp</b></span><br/><hr/><span style='color:white;font-size:10px;'><b>"+sysTemperatureValues[0].toUpperCase()+"</b></span></center></html>");
                     String corePackage = sysTemperatureValues[sysTemperatureValues.length - 1];
+                    String cores = "";
+                    for (int i = 1; i < (sysTemperatureValues.length) - 1; i++) {
+                        if(i%2 != 0){
+                            cores = cores + sysTemperatureValues[i] + "&nbsp;|&nbsp;";
+                        }else if(i%2 == 0){
+                            cores = cores + sysTemperatureValues[i] + "<br/>";
+                        }
+
+                    }
                     corePackage = corePackage.substring(corePackage.indexOf(":") + 2, corePackage.length() - 2);
                     sysPnlCenterLbl.setText("<html><center><span style='color:white;font-size:55px;'>" +  (int)Math.ceil(Float.parseFloat(corePackage)) + "°C" + "</span></center></html>");
-                    //sysPnlCenterLbl.setText("<html><span style='color:white;font-size:15px;font-weight:bold;'>" + metaData + "</span></html>");
+                    sysPnlPageEndLbl.setText("<html><center><span style='color:white;font-size:10px;'>" + cores + "</span></center></html>");
+
                 }
             }
         }.execute();
@@ -159,6 +170,9 @@ public class TTMain {
 
                     sysPnlCenterLbl.setHorizontalAlignment(SwingConstants.CENTER);
                     sysPanel.add(sysPnlCenterLbl, BorderLayout.CENTER);
+
+                    sysPnlPageEndLbl.setHorizontalAlignment(SwingConstants.CENTER);
+                    sysPanel.add(sysPnlPageEndLbl, BorderLayout.PAGE_END);
 
                         jWindow.addWindowFocusListener(new WindowFocusListener() {
                             @Override
