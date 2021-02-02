@@ -107,6 +107,9 @@ public class TTUtils {
         return values;
     }
 
+    /**
+     * temp.value.intValue() casts Double to int, getting rid of the decimal in all options.
+     */
 
     protected static String getDeviceTemperature() {
         Components components = JSensors.get.components();
