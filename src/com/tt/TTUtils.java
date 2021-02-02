@@ -121,7 +121,7 @@ public class TTUtils {
                     //Print temperatures
                     java.util.List<Temperature> temps = cpu.sensors.temperatures;
                     for (final Temperature temp : temps) {
-                        sysMetaData.append(temp.name).append(": ").append(temp.value).append("°C,");
+                        sysMetaData.append(temp.name).append(": ").append(temp.value.intValue()).append("°C,");
                     }
                     sysMetaData.deleteCharAt(sysMetaData.length() - 1);
                     if (cpuCount != cpus.size()) {
