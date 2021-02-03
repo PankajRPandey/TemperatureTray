@@ -107,6 +107,9 @@ public class TTUtils {
         return values;
     }
 
+    /**
+     * temp.value.intValue() casts Double to int, getting rid of the decimal in all options.
+     */
 
     protected static String getDeviceTemperature() {
         Components components = JSensors.get.components();
@@ -121,7 +124,7 @@ public class TTUtils {
                     //Print temperatures
                     java.util.List<Temperature> temps = cpu.sensors.temperatures;
                     for (final Temperature temp : temps) {
-                        sysMetaData.append(temp.name).append(": ").append(temp.value).append("°C,");
+                        sysMetaData.append(temp.name).append(": ").append(temp.value.intValue()).append("°C,");
                     }
                     sysMetaData.deleteCharAt(sysMetaData.length() - 1);
                     if (cpuCount != cpus.size()) {
