@@ -28,8 +28,6 @@ public class TTMain {
     private JLabel sysPnlPageEndLbl= new JLabel();
     private TTJPanel sysPanel = new TTJPanel(new BorderLayout());
     private TTJPanel mainPanel = new TTJPanel(new BorderLayout());
-    //private RoundedPanel sysPanel = new RoundedPanel(new BorderLayout());
-    //private RoundedPanel mainPanel = new RoundedPanel(new BorderLayout());
     private CardLayout card = new CardLayout();
     MouseAdapter mouseAdapter;
 
@@ -89,12 +87,12 @@ public class TTMain {
                     sysTemperatureValues = metaData.split(",");
                     sysPnlPageStartLbl.setText("<html><center><span style='color:white;font-size:18px;'><b>System Temperature</b></span><br/><hr/><span style='color:white;font-size:10px;'><b>"+sysTemperatureValues[0].toUpperCase()+"</b></span></center></html>");
                     String corePackage = sysTemperatureValues[sysTemperatureValues.length - 1];
-                    String cores = "";
+                    StringBuilder cores = new StringBuilder();
                     for (int i = 1; i < (sysTemperatureValues.length) - 1; i++) {
                         if(i%2 != 0){
-                            cores = cores + sysTemperatureValues[i] + "&nbsp;&nbsp;|&nbsp;&nbsp;";
-                        }else if(i%2 == 0){
-                            cores = cores + sysTemperatureValues[i] + "<br/>";
+                            cores.append(sysTemperatureValues[i]).append("&nbsp;&nbsp;|&nbsp;&nbsp;");
+                        }else {
+                            cores.append(sysTemperatureValues[i]).append("<br/>");
                         }
 
                     }
