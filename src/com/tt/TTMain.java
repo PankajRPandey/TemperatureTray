@@ -7,15 +7,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
-import java.awt.geom.Rectangle2D;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Objects;
-import static com.tt.TTUtils.*;
+
+import static com.tt.TTUtils.getDeviceTemperature;
 
 
 public class TTMain {
