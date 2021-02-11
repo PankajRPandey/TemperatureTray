@@ -49,13 +49,6 @@ public class TTUtils {
         return getAnyKeyValueAsString(jsonObject, responseKey);
     }
 
-//    public static void main(String[] args) {
-//        String str = "{\"test\":\"ing\",\"weather\":[{\"id\":711,\"main\":\"Smoke\",\"description\":\"smoke\",\"icon\":\"50n\"}]}";
-//        JSONObject json = new JSONObject(str);
-//
-//        System.out.println(Arrays.toString(getAnyKeyValueAsString(json, new String[]{"weather.0.icon"})));
-//    }
-
     public static String[] getAnyKeyValueAsString(JSONObject json, String[] keys){
         String[] values = new String[keys.length];
 
@@ -139,7 +132,6 @@ public class TTUtils {
     }
 
     protected static Color getPanelColorAccordingToTemperature(String temp) {
-        //use enum instead of new color objects
         float floatTemp = Float.parseFloat(temp.trim());
         if (floatTemp <= 22 && floatTemp >= 10) { //cold
             return new Color(0.0f,0.0f,1.0f,0.8f);
