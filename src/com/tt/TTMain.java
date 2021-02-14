@@ -30,6 +30,9 @@ public class TTMain {
     private TTJPanel mainPanel = new TTJPanel(new BorderLayout());
     private CardLayout card = new CardLayout();
     MouseAdapter mouseAdapter;
+    URL url;
+    Image imgIco;
+    ImageIcon i;
 
     public static void main(String[] args) {
         new TTMain();
@@ -72,7 +75,7 @@ public class TTMain {
         c.add("B", sysPanel);
         mainPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
         sysPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
-
+        //{"Mumbai"};//
         String[] geoAPIKeyValue = TTUtils.getKeysFromAPIResponse("https://freegeoip.app/json/", "city");
         //System.out.println(APIUtils.getIPAddress());
 
@@ -133,9 +136,7 @@ public class TTMain {
                     }
 
 
-                    URL url;
-                    Image imgIco;
-                    ImageIcon i;
+
                     try {
                         url = new URL("http://openweathermap.org/img/wn/" + weatherAPIKeyValue[4] + "@2x.png");
                         imgIco = ImageIO.read(url);
