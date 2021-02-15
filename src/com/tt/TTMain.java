@@ -138,8 +138,8 @@ public class TTMain {
 
 
                     try {
-                        url = new URL("http://openweathermap.org/img/wn/" + weatherAPIKeyValue[4] + "@2x.png");
-                        imgIco = ImageIO.read(url);
+                        //url = new URL("http://openweathermap.org/img/wn/" + weatherAPIKeyValue[4] + "@2x.png");
+                        imgIco = ImageIO.read(Objects.requireNonNull(TTMainUI.class.getClassLoader().getResourceAsStream("resources/icons/weather/" + weatherAPIKeyValue[4] + ".png")));
                         i = new ImageIcon(imgIco);
 
                     } catch (IOException malformedURLException) {
