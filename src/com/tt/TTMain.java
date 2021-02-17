@@ -143,7 +143,7 @@ public class TTMain {
                         i = new ImageIcon(imgIco);
 
                     } catch (IOException malformedURLException) {
-                        i = new ImageIcon("C:/Users/Pankaj/Downloads/10d@2x.png");
+                        i = new ImageIcon("resources/icons/weather/50d.png");
                         malformedURLException.printStackTrace();
                     }
 
