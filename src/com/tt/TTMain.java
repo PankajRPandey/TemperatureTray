@@ -148,6 +148,7 @@ public class TTMain {
                     }
 
                     centerLabel.setIcon(i);
+                    centerLabel.setHorizontalAlignment(SwingConstants.CENTER);
                     centerLabel.setText("<html><center><span style='color:white;font-size:55px;'>" + (int)Math.ceil(Float.parseFloat(weatherAPIKeyValue[0])) + "°C" + "</span></center></html>");
                     mainPanel.add(centerLabel, BorderLayout.CENTER);
 
