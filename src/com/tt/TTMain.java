@@ -8,7 +8,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import java.io.IOException;
-import java.net.URL;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Objects;
@@ -29,22 +28,19 @@ public class TTMain {
     private TTJPanel sysPanel = new TTJPanel(new BorderLayout());
     private TTJPanel mainPanel = new TTJPanel(new BorderLayout());
     private CardLayout card = new CardLayout();
-    MouseAdapter mouseAdapter;
-    URL url;
-    Image imgIco;
-    ImageIcon i;
+    private MouseAdapter mouseAdapter;
+    private Image weatherImg;
+    private ImageIcon weatherImgIcon;
+    private Image systemImg;
+    private ImageIcon systemImgIcon;
 
     public static void main(String[] args) {
         new TTMain();
     }
 
     public TTMain() {
-
         TTMain _this = this;
-
-
         _this.createJFrame();
-
         if (SystemTray.isSupported()) {
             try {
                 _this.displayTray();
@@ -55,7 +51,6 @@ public class TTMain {
             System.err.println("System tray is not supported!");
             System.exit(0);
         }
-
     }
 
     public void createJFrame() {
@@ -75,7 +70,7 @@ public class TTMain {
         c.add("B", sysPanel);
         mainPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
         sysPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
-        //{"Mumbai"};//
+        //{"Perth"} {"Mumbai"};//
         String[] geoAPIKeyValue = TTUtils.getKeysFromAPIResponse("https://freegeoip.app/json/", "city");
         //System.out.println(APIUtils.getIPAddress());
 
@@ -135,19 +130,15 @@ public class TTMain {
                         jWindow.setLocation(point1.x, screenSize.height - windowSize.height);
                     }
 
-
-
                     try {
-                        //url = new URL("http://openweathermap.org/img/wn/" + weatherAPIKeyValue[4] + "@2x.png");
-                        imgIco = ImageIO.read(Objects.requireNonNull(TTMainUI.class.getClassLoader().getResourceAsStream("resources/icons/weather/" + weatherAPIKeyValue[4] + ".png")));
-                        i = new ImageIcon(imgIco);
-
+                        weatherImg = ImageIO.read(Objects.requireNonNull(TTMainUI.class.getClassLoader().getResourceAsStream("resources/icons/weather/" + weatherAPIKeyValue[4] + ".png")));
+                        weatherImgIcon = new ImageIcon(weatherImg);
                     } catch (IOException malformedURLException) {
-                        i = new ImageIcon("resources/icons/weather/50d.png");
+                        weatherImgIcon = new ImageIcon("resources/icons/weather/50d.png");
                         malformedURLException.printStackTrace();
                     }
 
-                    centerLabel.setIcon(i);
+                    centerLabel.setIcon(weatherImgIcon);
                     centerLabel.setHorizontalAlignment(SwingConstants.CENTER);
                     centerLabel.setText("<html><center><span style='color:white;font-size:55px;'>" + (int)Math.ceil(Float.parseFloat(weatherAPIKeyValue[0])) + "°C" + "</span></center></html>");
                     mainPanel.add(centerLabel, BorderLayout.CENTER);
@@ -171,6 +162,14 @@ public class TTMain {
                     sysPnlPageStartLbl.setHorizontalAlignment(SwingConstants.CENTER);
                     sysPanel.add(sysPnlPageStartLbl, BorderLayout.PAGE_START);
 
+                    try {
+                        systemImg = ImageIO.read(Objects.requireNonNull(TTMainUI.class.getClassLoader().getResourceAsStream("resources/icons/system/cpu.png")));
+                        systemImgIcon = new ImageIcon(systemImg);
+                    } catch (IOException malformedURLException) {
+                        malformedURLException.printStackTrace();
+                    }
+
+                    sysPnlCenterLbl.setIcon(systemImgIcon);
                     sysPnlCenterLbl.setHorizontalAlignment(SwingConstants.CENTER);
                     sysPanel.add(sysPnlCenterLbl, BorderLayout.CENTER);
 
