@@ -213,7 +213,7 @@ public class TTMain {
         SystemTray tray = SystemTray.getSystemTray();
         Image image = null;
         try {
-            image = ImageIO.read(Objects.requireNonNull(TTMainUI.class.getClassLoader().getResourceAsStream("resources/tt.png")));
+            image = ImageIO.read(Objects.requireNonNull(TTMainUI.class.getClassLoader().getResourceAsStream("resources/icons/system/tt.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
