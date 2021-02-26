@@ -3,14 +3,15 @@
 </h1>
 
 ## About
-TemperatureTray is a simple Java Swing application that shows current temperature in your city and system temperature in the system tray area
 
 <h4 align="center">
 
 ![TemperatureTray](images/gifs/tt_win10.gif)  
-_TemperatureTray on Windows 10_
 
 </h4>
+
+TemperatureTray is a simple Java Swing application that shows current temperature in your city and system temperature in the system tray area
+
 
 ## Screenshots
 
