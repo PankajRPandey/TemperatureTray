@@ -19,10 +19,10 @@ public class TTMain {
 
     private JFrame jWindow = null;
     private Container c = new Container();
-    private JLabel centerLabel = new JLabel("<html><body style='color:white;'>Side A<body><html>");
+    private JLabel centerLabel = new JLabel("<html><body style='color:white;'>Loading..<body><html>");
     private JLabel pageStartLabel = new JLabel();
     private JLabel pageEndLabel = new JLabel();
-    private JLabel sysPnlCenterLbl = new JLabel("<html><body style='color:white;'>Side B<body><html>");
+    private JLabel sysPnlCenterLbl = new JLabel("<html><body style='color:white;'>Loading..<body><html>");
     private JLabel sysPnlPageStartLbl = new JLabel();
     private JLabel sysPnlPageEndLbl= new JLabel();
     private TTJPanel sysPanel = new TTJPanel(new BorderLayout());
@@ -36,7 +36,7 @@ public class TTMain {
 
     public static void main(String[] args) {
         new TTMain();
-    }
+}
 
     public TTMain() {
         TTMain _this = this;
