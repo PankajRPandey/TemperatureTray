@@ -73,8 +73,8 @@ public class TTMain {
         //{"Perth"} {"Mumbai"};//
         String[] geoAPIKeyValue = TTUtils.getKeysFromAPIResponse("https://freegeoip.app/json/", "city");
         //System.out.println(APIUtils.getIPAddress());
-
         new SwingWorker<Void, Void>() {
+            boolean setCpuIcon = true;
             @Override
             protected Void doInBackground() {
                 while (true) {
@@ -97,6 +97,11 @@ public class TTMain {
                     corePackage = corePackage.substring(corePackage.indexOf(":") + 2, corePackage.length() - 2);
                     sysPnlCenterLbl.setText("<html><center><span style='color:white;font-size:55px;'>" +  (int)Math.ceil(Float.parseFloat(corePackage)) + "°C" + "</span></center></html>");
                     sysPnlPageEndLbl.setText("<html><center><span style='color:white;font-size:11px;'>" + cores + "</span></center></html>");
+
+                    if (setCpuIcon && !(sysPnlCenterLbl.getText()).contains("Loading..")){
+                        sysPnlCenterLbl.setIcon(systemImgIcon);
+                        setCpuIcon = false;
+                    }
                 }
             }
         }.execute();
@@ -168,7 +173,7 @@ public class TTMain {
                         malformedURLException.printStackTrace();
                     }
 
-                    sysPnlCenterLbl.setIcon(systemImgIcon);
+                    //sysPnlCenterLbl.setIcon(systemImgIcon);
                     sysPnlCenterLbl.setHorizontalAlignment(SwingConstants.CENTER);
                     sysPanel.add(sysPnlCenterLbl, BorderLayout.CENTER);
 
