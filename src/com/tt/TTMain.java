@@ -96,7 +96,7 @@ public class TTMain {
                     }
                     corePackage = corePackage.substring(corePackage.indexOf(":") + 2, corePackage.length() - 2);
                     sysPnlCenterLbl.setText("<html><center><span style='color:white;font-size:55px;'>" +  (int)Math.ceil(Float.parseFloat(corePackage)) + "°C" + "</span></center></html>");
-                    sysPnlPageEndLbl.setText("<html><center><span style='color:white;font-size:11px;'>" + cores + "</span></center></html>");
+                    sysPnlPageEndLbl.setText("<html><center><span style='color:white;font-size:11px;'><b>" + cores + "</b></span></center></html>");
 
                     if (setCpuIcon && !(sysPnlCenterLbl.getText()).contains("Loading..")){
                         sysPnlCenterLbl.setIcon(systemImgIcon);
