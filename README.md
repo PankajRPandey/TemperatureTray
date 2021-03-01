@@ -22,7 +22,7 @@ TemperatureTray is a simple Java Swing application that shows current temperatur
 ![System Panel](images/screenshots/tt_system_panel.png)
 
 
-##Libraries used
+## Libraries used
 
 - [JSON-java](https://github.com/stleary/JSON-java)
 - [jSensors](https://github.com/profesorfalken/jSensors)
