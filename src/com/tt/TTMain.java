@@ -72,6 +72,20 @@ public class TTMain {
         sysPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
         //{"Perth"} {"Mumbai"};//
         String[] geoAPIKeyValue = TTUtils.getKeysFromAPIResponse("https://freegeoip.app/json/", "city");
+
+        try {
+            Font font = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(TTMainUI.class.getClassLoader().getResourceAsStream("resources/font.ttf")));
+            pageStartLabel.setFont(font.deriveFont(Font.PLAIN, 16f));
+            pageEndLabel.setFont(font.deriveFont(Font.PLAIN, 16f));
+            centerLabel.setFont(font.deriveFont(Font.PLAIN, 16f));
+            sysPnlPageStartLbl.setFont(font.deriveFont(Font.PLAIN, 16f));
+            sysPnlPageEndLbl.setFont(font.deriveFont(Font.PLAIN, 16f));
+            sysPnlCenterLbl.setFont(font.deriveFont(Font.PLAIN, 16f));
+
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace();
+        }
+
         //System.out.println(APIUtils.getIPAddress());
         new SwingWorker<Void, Void>() {
             boolean setCpuIcon = true;
