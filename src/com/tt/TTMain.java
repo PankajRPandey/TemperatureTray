@@ -75,12 +75,12 @@ public class TTMain {
 
         try {
             Font font = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(TTMainUI.class.getClassLoader().getResourceAsStream("resources/font.ttf")));
-            pageStartLabel.setFont(font.deriveFont(Font.PLAIN, 16f));
-            pageEndLabel.setFont(font.deriveFont(Font.PLAIN, 16f));
-            centerLabel.setFont(font.deriveFont(Font.PLAIN, 16f));
-            sysPnlPageStartLbl.setFont(font.deriveFont(Font.PLAIN, 16f));
-            sysPnlPageEndLbl.setFont(font.deriveFont(Font.PLAIN, 16f));
-            sysPnlCenterLbl.setFont(font.deriveFont(Font.PLAIN, 16f));
+            pageStartLabel.setFont(font.deriveFont(Font.BOLD, 16f));
+            pageEndLabel.setFont(font.deriveFont(Font.BOLD, 16f));
+            centerLabel.setFont(font.deriveFont(Font.BOLD, 16f));
+            sysPnlPageStartLbl.setFont(font.deriveFont(Font.BOLD, 16f));
+            sysPnlPageEndLbl.setFont(font.deriveFont(Font.BOLD, 16f));
+            sysPnlCenterLbl.setFont(font.deriveFont(Font.BOLD, 16f));
 
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
@@ -163,7 +163,7 @@ public class TTMain {
 
                     Calendar calendar = Calendar.getInstance();
                     calendar.set(calendar.get(Calendar.YEAR),
-                            calendar.get(Calendar.MONTH) + 1,
+                            calendar.get(Calendar.MONTH) ,
                             calendar.get(Calendar.DAY_OF_MONTH));
                     int weekOfMonth = calendar.get(Calendar.WEEK_OF_MONTH);
 
