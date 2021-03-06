@@ -22,8 +22,10 @@ TemperatureTray is a simple Java Swing application that shows current temperatur
 ![System Panel](images/screenshots/tt_system_panel.png)
 
 
-## Libraries Used
+## Credits
 
 - [JSON-java](https://github.com/stleary/JSON-java) : A JSON parser library in Java
 - [jSensors](https://github.com/profesorfalken/jSensors) : A library to monitor hardware sensors of PC using Java
+- Icon used in the system temperature card is [Electronics icon by Icons8](https://icons8.com/icon/Gfc8pij0bpLN/electronics)
+
 
