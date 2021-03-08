@@ -2,11 +2,11 @@
   <img src="https://raw.githubusercontent.com/PankajRPandey/TemperatureTray/master/src/resources/temperaturetray.png" alt="🌡TemperatureTray" width="800">
 </h1>
 
-<h3 align="center">  •
+<h4 align="center">  •
   <a href="#about">About</a> •
   <a href="#screenshots">Screenshots</a> •
   <a href="#credits">Credits</a> •
-</h3>
+</h4>
 
 <h4 align="center">
 
