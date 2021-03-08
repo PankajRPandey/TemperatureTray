@@ -75,12 +75,13 @@ public class TTMain {
 
         try {
             Font font = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(TTMainUI.class.getClassLoader().getResourceAsStream("resources/font.ttf")));
-            pageStartLabel.setFont(font.deriveFont(Font.BOLD, 16f));
-            pageEndLabel.setFont(font.deriveFont(Font.BOLD, 16f));
-            centerLabel.setFont(font.deriveFont(Font.BOLD, 16f));
-            sysPnlPageStartLbl.setFont(font.deriveFont(Font.BOLD, 16f));
-            sysPnlPageEndLbl.setFont(font.deriveFont(Font.BOLD, 16f));
-            sysPnlCenterLbl.setFont(font.deriveFont(Font.BOLD, 16f));
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
+            pageStartLabel.setFont(font.deriveFont(Font.BOLD, 20f));
+            pageEndLabel.setFont(font.deriveFont(Font.BOLD, 20f));
+            centerLabel.setFont(font.deriveFont(Font.BOLD, 20f));
+            sysPnlPageStartLbl.setFont(font.deriveFont(Font.BOLD, 20f));
+            sysPnlPageEndLbl.setFont(font.deriveFont(Font.BOLD, 20f));
+            sysPnlCenterLbl.setFont(font.deriveFont(Font.BOLD, 20f));
 
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
