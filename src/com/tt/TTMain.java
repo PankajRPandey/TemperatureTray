@@ -74,7 +74,7 @@ public class TTMain {
         String[] geoAPIKeyValue = TTUtils.getKeysFromAPIResponse("https://freegeoip.app/json/", "city");
 
         try {
-            Font font = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(TTMainUI.class.getClassLoader().getResourceAsStream("resources/font.ttf")));
+            Font font = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(TTMainUI.class.getClassLoader().getResourceAsStream("resources/RobotoCondensed-Bold.ttf")));
             GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
             pageStartLabel.setFont(font.deriveFont(Font.BOLD, 20f));
             pageEndLabel.setFont(font.deriveFont(Font.BOLD, 20f));
