@@ -82,7 +82,6 @@ public class TTMain {
             sysPnlPageStartLbl.setFont(font.deriveFont(Font.BOLD, 20f));
             sysPnlPageEndLbl.setFont(font.deriveFont(Font.BOLD, 20f));
             sysPnlCenterLbl.setFont(font.deriveFont(Font.BOLD, 20f));
-
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
         }
@@ -98,7 +97,7 @@ public class TTMain {
                     metaData = metaData.replace("Temp ","");
                     String[] sysTemperatureValues;
                     sysTemperatureValues = metaData.split(",");
-                    sysPnlPageStartLbl.setText("<html><center><span style='color:white;font-size:18px;'><b>System Temperature</b></span><br/><hr/><span style='color:white;font-size:10px;'><b>"+sysTemperatureValues[0].toUpperCase()+"</b></span></center></html>");
+                    sysPnlPageStartLbl.setText("<html><center><span style='color:white;font-size:22px;'><b>System Temperature</b></span><br/><hr/><span style='color:white;font-size:12px;'><b>"+sysTemperatureValues[0].toUpperCase()+"</b></span></center></html>");
                     String corePackage = sysTemperatureValues[sysTemperatureValues.length - 1];
                     StringBuilder cores = new StringBuilder();
                     for (int i = 1; i < (sysTemperatureValues.length) - 1; i++) {
@@ -168,7 +167,7 @@ public class TTMain {
                             calendar.get(Calendar.DAY_OF_MONTH));
                     int weekOfMonth = calendar.get(Calendar.WEEK_OF_MONTH);
 
-                    pageStartLabel.setText("<html><center><span style='color:white;font-size:18px;'><b>" + geoAPIKeyValue[0] + "</b></span><br/><hr/><span style='color:white;font-size:10px;'><b>" + LocalDate.now().getDayOfWeek() + " &nbsp;|&nbsp; WEEK OF THE MONTH: " + weekOfMonth + "</b></span></center></html>");
+                    pageStartLabel.setText("<html><center><span style='color:white;font-size:22px;'><b>" + geoAPIKeyValue[0] + "</b></span><br/><hr/><span style='color:white;font-size:12px;'><b>" + LocalDate.now().getDayOfWeek() + " &nbsp;|&nbsp; WEEK OF THE MONTH: " + weekOfMonth + "</b></span></center></html>");
                     pageStartLabel.setHorizontalAlignment(SwingConstants.CENTER);
                     mainPanel.add(pageStartLabel, BorderLayout.PAGE_START);
 
