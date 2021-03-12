@@ -110,7 +110,7 @@ public class TTMain {
                     }
                     corePackage = corePackage.substring(corePackage.indexOf(":") + 2, corePackage.length() - 2);
                     sysPnlCenterLbl.setText("<html><center><span style='color:white;font-size:55px;'>" +  (int)Math.ceil(Float.parseFloat(corePackage)) + "°C" + "</span></center></html>");
-                    sysPnlPageEndLbl.setText("<html><center><span style='color:white;font-size:11px;'><b>" + cores + "</b></span></center></html>");
+                    sysPnlPageEndLbl.setText("<html><center><span style='color:white;font-size:12px;'><b>" + cores + "</b></span></center></html>");
 
                     if (setCpuIcon && !(sysPnlCenterLbl.getText()).contains("Loading..")){
                         sysPnlCenterLbl.setIcon(systemImgIcon);
@@ -171,7 +171,7 @@ public class TTMain {
                     pageStartLabel.setHorizontalAlignment(SwingConstants.CENTER);
                     mainPanel.add(pageStartLabel, BorderLayout.PAGE_START);
 
-                    pageEndLabel.setText("<html><center><span style='color:white;font-size:15px;'><i>Feels like " + (int)Math.ceil(Float.parseFloat(weatherAPIKeyValue[1])) + "°C</i></span><br/><span style='color:white;font-size:10px;font-weight:bold;'>HIGH " + (int)Math.ceil(Float.parseFloat(weatherAPIKeyValue[2])) + "°C &nbsp;&nbsp; | &nbsp;&nbsp; LOW " + (int)Math.ceil(Float.parseFloat(weatherAPIKeyValue[3])) + "°C</span></center></html>");
+                    pageEndLabel.setText("<html><center><span style='color:white;font-size:12px;'><i>Feels like " + (int)Math.ceil(Float.parseFloat(weatherAPIKeyValue[1])) + "°C</i></span><br/><span style='color:white;font-size:12px;font-weight:bold;'>HIGH " + (int)Math.ceil(Float.parseFloat(weatherAPIKeyValue[2])) + "°C &nbsp;&nbsp; | &nbsp;&nbsp; LOW " + (int)Math.ceil(Float.parseFloat(weatherAPIKeyValue[3])) + "°C</span></center></html>");
                     pageEndLabel.setHorizontalAlignment(SwingConstants.CENTER);
                     //pageEndLabel.setVerticalTextPosition(JLabel.TOP);
                     mainPanel.add(pageEndLabel, BorderLayout.PAGE_END);
