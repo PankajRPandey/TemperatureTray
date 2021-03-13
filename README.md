@@ -8,6 +8,12 @@
   <a href="#credits">Credits</a> •
 </h4>
 
+<h4 align="center">
+
+![TemperatureTray](images/gifs/tt_win10.gif)
+
+</h4>
+
 ## About
 
 TemperatureTray is a simple Java Swing application that shows current temperature in your city and system temperature in the system tray area
