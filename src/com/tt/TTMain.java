@@ -22,7 +22,7 @@ public class TTMain {
     private JLabel centerLabel = new JLabel("<html><body style='color:white;'>Loading..<body><html>");
     private JLabel pageStartLabel = new JLabel();
     private JLabel pageEndLabel = new JLabel();
-    private JLabel sysPnlCenterLbl = new JLabel("<html><body style='color:white;'>Loading..<body><html>");
+    private JLabel sysPnlCenterLbl = new JLabel("<html><body style='color:white;font-size:20px;'>Loading..<body><html>");
     private JLabel sysPnlPageStartLbl = new JLabel();
     private JLabel sysPnlPageEndLbl= new JLabel();
     private TTJPanel sysPanel = new TTJPanel(new BorderLayout());
@@ -81,7 +81,8 @@ public class TTMain {
             centerLabel.setFont(font.deriveFont(Font.BOLD, 20f));
             sysPnlPageStartLbl.setFont(font.deriveFont(Font.BOLD, 20f));
             sysPnlPageEndLbl.setFont(font.deriveFont(Font.BOLD, 20f));
-            sysPnlCenterLbl.setFont(font.deriveFont(Font.BOLD, 20f));
+            sysPnlCenterLbl.setFont(font.deriveFont(Font.BOLD, 70f));
+            sysPnlCenterLbl.setForeground(Color.WHITE);
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
         }
@@ -109,7 +110,8 @@ public class TTMain {
 
                     }
                     corePackage = corePackage.substring(corePackage.indexOf(":") + 2, corePackage.length() - 2);
-                    sysPnlCenterLbl.setText("<html><center><span style='color:white;font-size:55px;'>" +  (int)Math.ceil(Float.parseFloat(corePackage)) + "°C" + "</span></center></html>");
+                    //sysPnlCenterLbl.setText("<html><center><span style='color:white;font-size:55px;'>" +  (int)Math.ceil(Float.parseFloat(corePackage)) + "°C" + "</span></center></html>");
+                    sysPnlCenterLbl.setText((int)Math.ceil(Float.parseFloat(corePackage)) + "°C");
                     sysPnlPageEndLbl.setText("<html><center><span style='color:white;font-size:12px;'><b>" + cores + "</b></span></center></html>");
 
                     if (setCpuIcon && !(sysPnlCenterLbl.getText()).contains("Loading..")){
