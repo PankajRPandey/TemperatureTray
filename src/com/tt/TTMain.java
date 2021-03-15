@@ -93,7 +93,7 @@ public class TTMain {
             @Override
             protected Void doInBackground() {
                 while (true) {
-                    // "CPU: Intel Core i7-3517U,Temp CPU Core #1: 73.0°C,Temp CPU Core #2: 77.0°C,Temp CPU Core #3: 78.0°C,Temp CPU Core #4: 79.0°C,Temp CPU Package: 77.0°C"
+                    // "CPU: Intel Core i7-3517U,Temp CPU Core #1: 73.0°C,Temp CPU Core #2: 77.0°C,Temp CPU Core #3: 78.0°C,Temp CPU Core #4: 79.0°C,Temp CPU Package: 100.0°C";//
                     String metaData = getDeviceTemperature();
                     metaData = metaData.replace("Temp ","");
                     String[] sysTemperatureValues;
@@ -111,7 +111,7 @@ public class TTMain {
                     }
                     corePackage = corePackage.substring(corePackage.indexOf(":") + 2, corePackage.length() - 2);
                     //sysPnlCenterLbl.setText("<html><center><span style='color:white;font-size:55px;'>" +  (int)Math.ceil(Float.parseFloat(corePackage)) + "°C" + "</span></center></html>");
-                    sysPnlCenterLbl.setText((int)Math.ceil(Float.parseFloat(corePackage)) + "°C");
+                    sysPnlCenterLbl.setText(" "+(int)Math.ceil(Float.parseFloat(corePackage)) + "°C");
                     sysPnlPageEndLbl.setText("<html><center><span style='color:white;font-size:12px;'><b>" + cores + "</b></span></center></html>");
 
                     if (setCpuIcon && !(sysPnlCenterLbl.getText()).contains("Loading..")){
@@ -130,7 +130,7 @@ public class TTMain {
                 if (e.getButton() == MouseEvent.BUTTON1) {
                     jWindow.setVisible(true);
                     //{"20.55", "21.66", "24.77", "20.44", "50d"};//
-                    String[] weatherAPIKeyValue = {"20.55", "21.66", "24.77", "20.44", "50d"};//TTUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
+                    String[] weatherAPIKeyValue = {"100.55", "21.66", "24.77", "20.44", "50d"};//TTUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
 
 
                     jWindow.setSize(300, 200);
@@ -160,7 +160,7 @@ public class TTMain {
 
                     centerLabel.setIcon(weatherImgIcon);
                     centerLabel.setHorizontalAlignment(SwingConstants.CENTER);
-                    centerLabel.setText("<html><center><span style='color:white;font-size:55px;'>" + (int)Math.ceil(Float.parseFloat(weatherAPIKeyValue[0])) + "°C" + "</span></center></html>");
+                    centerLabel.setText("<html><center><span style='color:white;font-size:55px;'>&nbsp;" + (int)Math.ceil(Float.parseFloat(weatherAPIKeyValue[0])) + "°C" + "</span></center></html>");
                     mainPanel.add(centerLabel, BorderLayout.CENTER);
 
                     Calendar calendar = Calendar.getInstance();
