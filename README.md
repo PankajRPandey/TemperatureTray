@@ -18,7 +18,7 @@
 
 TemperatureTray is a simple Java Swing application that shows current temperature in your city and system temperature in the system tray area
 
-<!--
+
 ## Screenshots
 
 ### Weather
@@ -26,7 +26,7 @@ TemperatureTray is a simple Java Swing application that shows current temperatur
 
 ### System Temperature
 ![System Panel](images/screenshots/tt_system_panel.png)
--->
+
 
 ## Credits
 
