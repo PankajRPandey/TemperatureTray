@@ -71,7 +71,7 @@ public class TTMain {
         mainPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
         sysPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
         //{"Perth"} {"Mumbai"};//
-        String[] geoAPIKeyValue = TTUtils.getKeysFromAPIResponse("https://freegeoip.app/json/", "city");
+        String[] geoAPIKeyValue = {"Mumbai"};//TTUtils.getKeysFromAPIResponse("https://freegeoip.app/json/", "city");
 
         try {
             Font font = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(TTMainUI.class.getClassLoader().getResourceAsStream("resources/RobotoCondensed-Bold.ttf")));
@@ -114,9 +114,10 @@ public class TTMain {
                     sysPnlCenterLbl.setText(" "+(int)Math.ceil(Float.parseFloat(corePackage)) + "°C");
                     sysPnlPageEndLbl.setText("<html><center><span style='color:white;font-size:12px;'><b>" + cores + "</b></span></center></html>");
 
-                    if (setCpuIcon && !(sysPnlCenterLbl.getText()).contains("Loading..")){
+                    if (!(sysPnlCenterLbl.getText()).contains("Loading..") && sysPnlCenterLbl.getIcon()==null){
+                        System.out.println(sysPnlCenterLbl.getIcon());
                         sysPnlCenterLbl.setIcon(systemImgIcon);
-                        setCpuIcon = false;
+                        //setCpuIcon = false;
                     }
                 }
             }
@@ -130,7 +131,7 @@ public class TTMain {
                 if (e.getButton() == MouseEvent.BUTTON1) {
                     jWindow.setVisible(true);
                     //{"20.55", "21.66", "24.77", "20.44", "50d"};//
-                    String[] weatherAPIKeyValue = {"100.55", "21.66", "24.77", "20.44", "50d"};//TTUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
+                    String[] weatherAPIKeyValue = {"20.55", "21.66", "24.77", "20.44", "50d"};//TTUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
 
 
                     jWindow.setSize(300, 200);
