@@ -72,7 +72,7 @@ public class TTMain {
         sysPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
         //{"Perth"} {"Mumbai"};//
         String[] geoAPIKeyValue = {"Mumbai"};//TTUtils.getKeysFromAPIResponse("https://freegeoip.app/json/", "city");
-        this.setAppFont();
+        setAppFont();
 //        try {
 //            Font font = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(TTMainUI.class.getClassLoader().getResourceAsStream("resources/RobotoCondensed-Bold.ttf")));
 //            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
