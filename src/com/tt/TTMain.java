@@ -71,7 +71,7 @@ public class TTMain {
         mainPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
         sysPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
         //{"Perth"} {"Mumbai"};//
-        String[] geoAPIKeyValue = {"Mumbai"};//TTUtils.getKeysFromAPIResponse("https://freegeoip.app/json/", "city");
+        String[] geoAPIKeyValue = TTUtils.getKeysFromAPIResponse("https://freegeoip.app/json/", "city");
         setAppFont();
         //System.out.println(APIUtils.getIPAddress());
         new SwingWorker<Void, Void>() {
