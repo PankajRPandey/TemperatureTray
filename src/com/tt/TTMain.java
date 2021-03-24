@@ -75,7 +75,6 @@ public class TTMain {
         setAppFont();
         //System.out.println(APIUtils.getIPAddress());
         new SwingWorker<Void, Void>() {
-            boolean setCpuIcon = true;
             @Override
             protected Void doInBackground() {
                 while (true) {
