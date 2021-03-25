@@ -8,11 +8,13 @@
   <a href="#credits">Credits</a> •
 </h4>
 
+<!--
 <h4 align="center">
 
 ![TemperatureTray](images/gifs/tt_win10.gif)
 
 </h4>
+-->
 
 ## About
 
