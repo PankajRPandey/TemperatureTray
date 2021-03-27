@@ -100,7 +100,6 @@ public class TTMain {
                     sysPnlPageEndLbl.setText("<html><center><span style='color:white;font-size:12px;'><b>" + cores + "</b></span></center></html>");
 
                     if (!(sysPnlCenterLbl.getText()).contains("Loading..") && sysPnlCenterLbl.getIcon()==null){
-                        System.out.println(sysPnlCenterLbl.getIcon());
                         sysPnlCenterLbl.setIcon(systemImgIcon);
                     }
                 }
