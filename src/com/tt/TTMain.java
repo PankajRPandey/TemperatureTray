@@ -102,7 +102,6 @@ public class TTMain {
                     if (!(sysPnlCenterLbl.getText()).contains("Loading..") && sysPnlCenterLbl.getIcon()==null){
                         System.out.println(sysPnlCenterLbl.getIcon());
                         sysPnlCenterLbl.setIcon(systemImgIcon);
-                        //setCpuIcon = false;
                     }
                 }
             }
