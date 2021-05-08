@@ -1,6 +1,6 @@
-<h1 align="center">
+<!-- <h1 align="center">
   <img src="https://raw.githubusercontent.com/PankajRPandey/TemperatureTray/master/src/resources/temperaturetray.png" alt="🌡TemperatureTray" width="800">
-</h1>
+</h1> -->
 
 <h4 align="center">  •
   <a href="#about">About</a> •
