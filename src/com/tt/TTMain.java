@@ -131,7 +131,7 @@ public class TTMain {
                         }
                     } else if (os.contains("Mac")) {
                         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-                        jWindow.setLocation(point1.x, screenSize.height - windowSize.height);
+                        jWindow.setLocation(point1.x, screenSize.height - windowSize.height - 50);
                     }
 
                     try {
