@@ -34,5 +34,5 @@ TemperatureTray is a simple Java Swing application that shows current temperatur
 - [jSensors](https://github.com/profesorfalken/jSensors) : A library to monitor hardware sensors of PC using Java 
 - Icon pack used as is - [Modern Weather Icon Pack](https://www.dovora.com/resources/weather-icons/) by [Dovora Interactive](https://www.dovora.com/) under [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/)
 - Icon used in the system temperature card is [Electronics icon by Icons8](https://icons8.com/icon/Gfc8pij0bpLN/electronics)
-
+- Font used: [Roboto Condensed](https://fonts.google.com/specimen/Roboto+Condensed)
 
