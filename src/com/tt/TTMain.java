@@ -171,7 +171,6 @@ public class TTMain {
                         malformedURLException.printStackTrace();
                     }
 
-                    //sysPnlCenterLbl.setIcon(systemImgIcon);
                     sysPnlCenterLbl.setHorizontalAlignment(SwingConstants.CENTER);
                     sysPanel.add(sysPnlCenterLbl, BorderLayout.CENTER);
 
@@ -192,11 +191,8 @@ public class TTMain {
                         });
 
                 }
-
             }
         };
-
-
 
 
         jWindow.addMouseListener(new MouseAdapter() {
