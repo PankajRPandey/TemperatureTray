@@ -19,7 +19,7 @@ public class TTMain {
 
     private JFrame jWindow = null;
     private Container c = new Container();
-    private JLabel centerLabel = new JLabel("<html><body style='color:white;'>Loading..<body><html>");
+    private final JLabel centerLabel = new JLabel("<html><body style='color:white;'>Loading..<body><html>");
     private JLabel pageStartLabel = new JLabel();
     private JLabel pageEndLabel = new JLabel();
     private JLabel sysPnlCenterLbl = new JLabel("<html><body style='color:white;font-size:20px;'>Loading..<body><html>");
