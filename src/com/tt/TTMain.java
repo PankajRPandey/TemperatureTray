@@ -21,7 +21,7 @@ public class TTMain {
     private Container c = new Container();
     private final JLabel centerLabel = new JLabel("<html><body style='color:white;'>Loading..<body><html>");
     private final JLabel pageStartLabel = new JLabel();
-    private JLabel pageEndLabel = new JLabel();
+    private final JLabel pageEndLabel = new JLabel();
     private JLabel sysPnlCenterLbl = new JLabel("<html><body style='color:white;font-size:20px;'>Loading..<body><html>");
     private JLabel sysPnlPageStartLbl = new JLabel();
     private JLabel sysPnlPageEndLbl= new JLabel();
