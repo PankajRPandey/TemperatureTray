@@ -23,7 +23,7 @@ public class TTMain {
     private final JLabel pageStartLabel = new JLabel();
     private final JLabel pageEndLabel = new JLabel();
     private final JLabel sysPnlCenterLbl = new JLabel("<html><body style='color:white;font-size:20px;'>Loading..<body><html>");
-    private JLabel sysPnlPageStartLbl = new JLabel();
+    private final JLabel sysPnlPageStartLbl = new JLabel();
     private JLabel sysPnlPageEndLbl= new JLabel();
     private TTJPanel sysPanel = new TTJPanel(new BorderLayout());
     private TTJPanel mainPanel = new TTJPanel(new BorderLayout());
