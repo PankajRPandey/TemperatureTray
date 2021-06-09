@@ -25,7 +25,7 @@ public class TTMain {
     private final JLabel sysPnlCenterLbl = new JLabel("<html><body style='color:white;font-size:20px;'>Loading..<body><html>");
     private final JLabel sysPnlPageStartLbl = new JLabel();
     private final JLabel sysPnlPageEndLbl= new JLabel();
-    private TTJPanel sysPanel = new TTJPanel(new BorderLayout());
+    private final TTJPanel sysPanel = new TTJPanel(new BorderLayout());
     private TTJPanel mainPanel = new TTJPanel(new BorderLayout());
     private CardLayout card = new CardLayout();
     private MouseAdapter mouseAdapter;
