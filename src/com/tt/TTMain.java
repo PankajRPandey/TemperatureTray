@@ -187,7 +187,6 @@ public class TTMain {
                             public void windowLostFocus(WindowEvent e) {
                                     mainPanel.revalidate();
                                     sysPanel.revalidate();
-                                    //jWindow.dispose();
                                 jWindow.setVisible(false);
                             }
                         });
