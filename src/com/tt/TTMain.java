@@ -117,7 +117,7 @@ public class TTMain {
                     String[] weatherAPIKeyValue = {"20.55", "21.66", "24.77", "20.44", "50d"};//TTUtils.getKeysFromAPIResponse("http://api.openweathermap.org/data/2.5/weather?q="+ geoAPIKeyValue[0] +"&units=metric&appid=", "main.temp", "main.feels_like", "main.temp_max", "main.temp_min", "weather.0.icon");
                     int jwWidth = 300;
 
-                    jWindow.setSize(300, 200);
+                    jWindow.setSize(jwWidth, 200);
                     Point point1 = e.getPoint(); //system tray icon click x,y/co-ords
                     Rectangle windowSize = GraphicsEnvironment.getLocalGraphicsEnvironment()
                             .getMaximumWindowBounds();
