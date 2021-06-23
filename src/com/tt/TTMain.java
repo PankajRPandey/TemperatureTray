@@ -124,7 +124,7 @@ public class TTMain {
                             .getMaximumWindowBounds();
                     String os = System.getProperty("os.name");
                     if (os.contains("Windows")) {
-                        if (point1.y <= 300) {
+                        if (point1.y <= jwWidth) {
                             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
                             jWindow.setLocation(point1.x, (screenSize.height - windowSize.height) - 6);
                         } else {
