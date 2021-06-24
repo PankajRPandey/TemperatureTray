@@ -95,7 +95,6 @@ public class TTMain {
 
                     }
                     corePackage = corePackage.substring(corePackage.indexOf(":") + 2, corePackage.length() - 2);
-                    //sysPnlCenterLbl.setText("<html><center><span style='color:white;font-size:55px;'>" +  (int)Math.ceil(Float.parseFloat(corePackage)) + "°C" + "</span></center></html>");
                     sysPnlCenterLbl.setText(" "+(int)Math.ceil(Float.parseFloat(corePackage)) + "°C");
                     sysPnlPageEndLbl.setText("<html><center><span style='color:white;font-size:12px;'><b>" + cores + "</b></span></center></html>");
 
