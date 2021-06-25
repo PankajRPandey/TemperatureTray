@@ -117,7 +117,7 @@ public class TTMain {
                     int jwWidth = 300;
                     int jwHeight = 200;
 
-                    jWindow.setSize(jwWidth, 200);
+                    jWindow.setSize(jwWidth, jwHeight);
                     Point point1 = e.getPoint(); //system tray icon click x,y/co-ords
                     Rectangle windowSize = GraphicsEnvironment.getLocalGraphicsEnvironment()
                             .getMaximumWindowBounds();
