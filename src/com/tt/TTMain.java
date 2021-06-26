@@ -159,7 +159,6 @@ public class TTMain {
 
                     pageEndLabel.setText("<html><center><span style='color:white;font-size:12px;'><i>Feels like " + (int)Math.ceil(Float.parseFloat(weatherAPIKeyValue[1])) + "°C</i></span><br/><span style='color:white;font-size:12px;font-weight:bold;'>HIGH " + (int)Math.ceil(Float.parseFloat(weatherAPIKeyValue[2])) + "°C &nbsp;&nbsp; | &nbsp;&nbsp; LOW " + (int)Math.ceil(Float.parseFloat(weatherAPIKeyValue[3])) + "°C</span></center></html>");
                     pageEndLabel.setHorizontalAlignment(SwingConstants.CENTER);
-                    //pageEndLabel.setVerticalTextPosition(JLabel.TOP);
                     mainPanel.add(pageEndLabel, BorderLayout.PAGE_END);
 
                     //sysPnlPageStartLbl.setText("<html><center><span style='color:white;font-size:18px;'><b>System Temperature</b></span><br/><hr/></center></html>");
