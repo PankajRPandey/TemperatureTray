@@ -127,7 +127,7 @@ public class TTMain {
                             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
                             jWindow.setLocation(point1.x, (screenSize.height - windowSize.height) - 6);
                         } else {
-                            jWindow.setLocation(point1.x, windowSize.height - 200 - 6);
+                            jWindow.setLocation(point1.x, windowSize.height - jwHeight - 6);
                         }
                     } else if (os.contains("Mac")) {
                         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
