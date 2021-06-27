@@ -161,7 +161,6 @@ public class TTMain {
                     pageEndLabel.setHorizontalAlignment(SwingConstants.CENTER);
                     mainPanel.add(pageEndLabel, BorderLayout.PAGE_END);
 
-                    //sysPnlPageStartLbl.setText("<html><center><span style='color:white;font-size:18px;'><b>System Temperature</b></span><br/><hr/></center></html>");
                     sysPnlPageStartLbl.setHorizontalAlignment(SwingConstants.CENTER);
                     sysPanel.add(sysPnlPageStartLbl, BorderLayout.PAGE_START);
 
