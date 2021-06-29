@@ -138,7 +138,7 @@ public class TTMain {
                         weatherImg = ImageIO.read(Objects.requireNonNull(TTMainUI.class.getClassLoader().getResourceAsStream("resources/icons/weather/" + weatherAPIKeyValue[4] + ".png")));
                         weatherImgIcon = new ImageIcon(weatherImg);
                     } catch (IOException malformedURLException) {
-                        //weatherImgIcon = new ImageIcon("resources/icons/weather/50d.png");
+                        weatherImgIcon = new ImageIcon("resources/icons/weather/50d.png");
                         malformedURLException.printStackTrace();
                     }
 
