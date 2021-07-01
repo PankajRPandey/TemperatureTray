@@ -27,7 +27,7 @@ public class TTMain {
     private final JLabel sysPnlPageEndLbl= new JLabel();
     private final TTJPanel sysPanel = new TTJPanel(new BorderLayout());
     private final TTJPanel mainPanel = new TTJPanel(new BorderLayout());
-    private CardLayout card = new CardLayout();
+    private final CardLayout card = new CardLayout();
     private MouseAdapter mouseAdapter;
     private Image weatherImg;
     private ImageIcon weatherImgIcon;
