@@ -147,11 +147,12 @@ public class TTMain {
                     centerLabel.setText("<html><center><span style='color:white;font-size:55px;'>&nbsp;" + (int)Math.ceil(Float.parseFloat(weatherAPIKeyValue[0])) + "°C" + "</span></center></html>");
                     mainPanel.add(centerLabel, BorderLayout.CENTER);
 
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.set(calendar.get(Calendar.YEAR),
-                            calendar.get(Calendar.MONTH) ,
-                            calendar.get(Calendar.DAY_OF_MONTH));
-                    int weekOfMonth = calendar.get(Calendar.WEEK_OF_MONTH);
+//                    Calendar calendar = Calendar.getInstance();
+//                    calendar.set(calendar.get(Calendar.YEAR),
+//                            calendar.get(Calendar.MONTH) ,
+//                            calendar.get(Calendar.DAY_OF_MONTH));
+//                    int weekOfMonth = calendar.get(Calendar.WEEK_OF_MONTH);
+                    int weekOfMonth = 0;
 
                     pageStartLabel.setText("<html><center><span style='color:white;font-size:22px;'><b>" + geoAPIKeyValue[0] + "</b></span><br/><hr/><span style='color:white;font-size:12px;'><b>" + LocalDate.now().getDayOfWeek() + " &nbsp;|&nbsp; WEEK OF THE MONTH: " + weekOfMonth + "</b></span></center></html>");
                     pageStartLabel.setHorizontalAlignment(SwingConstants.CENTER);
