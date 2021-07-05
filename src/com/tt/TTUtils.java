@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -172,8 +173,11 @@ public class TTUtils {
     }
 
     public static int getCurrentWeekOfMonth(){
-
-        return 0;
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH) ,
+                calendar.get(Calendar.DAY_OF_MONTH));
+        return calendar.get(Calendar.WEEK_OF_MONTH);
     }
 
 
