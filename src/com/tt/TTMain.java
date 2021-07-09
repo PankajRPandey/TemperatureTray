@@ -9,7 +9,6 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.Objects;
 
 import static com.tt.TTUtils.getDeviceTemperature;
