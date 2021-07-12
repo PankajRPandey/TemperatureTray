@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import static com.tt.TTUtils.getCurrentWeekOfMonth;
 import static com.tt.TTUtils.getDeviceTemperature;
 
 
@@ -151,7 +152,7 @@ public class TTMain {
 //                            calendar.get(Calendar.MONTH) ,
 //                            calendar.get(Calendar.DAY_OF_MONTH));
 //                    int weekOfMonth = calendar.get(Calendar.WEEK_OF_MONTH);
-                    int weekOfMonth = 0;
+                    int weekOfMonth = getCurrentWeekOfMonth();
 
                     pageStartLabel.setText("<html><center><span style='color:white;font-size:22px;'><b>" + geoAPIKeyValue[0] + "</b></span><br/><hr/><span style='color:white;font-size:12px;'><b>" + LocalDate.now().getDayOfWeek() + " &nbsp;|&nbsp; WEEK OF THE MONTH: " + weekOfMonth + "</b></span></center></html>");
                     pageStartLabel.setHorizontalAlignment(SwingConstants.CENTER);
