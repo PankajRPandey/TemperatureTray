@@ -48,7 +48,7 @@ public class TTMain {
                 awtException.printStackTrace();
             }
         } else {
-            JOptionPane.showConfirmDialog(null,
+            int result = JOptionPane.showConfirmDialog(null,
                     "This application cannot work.\nSystem tray is not supported!",
                     "Error", JOptionPane.DEFAULT_OPTION);
             System.err.println("System tray is not supported!");
