@@ -52,7 +52,7 @@ public class TTMain {
                     "This application cannot work.\nSystem tray is not supported!",
                     "Error", JOptionPane.DEFAULT_OPTION);
             if (result == JOptionPane.DEFAULT_OPTION){
-                System.err.println("App closed!");
+                System.exit(0);
             }
             System.err.println("System tray is not supported!");
         }
