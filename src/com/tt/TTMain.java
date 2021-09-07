@@ -69,7 +69,6 @@ public class TTMain {
         jWindow.setFocusable(true);
 
         c = jWindow.getContentPane();
-        //jWindow.getContentPane().setBackground(new Color(1.0f,1.0f,1.0f,1.0f));
         c.setLayout(card);
         c.add("A", mainPanel);
         c.add("B", sysPanel);
